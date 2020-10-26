@@ -1,0 +1,14 @@
+PROCEDURE statustexts(
+		IN iv_langu VARCHAR(2), 
+		OUT et_result TABLE (
+			id INT,
+			status_text NVARCHAR(20)
+		)
+	)
+AS
+BEGIN
+	et_result = SELECT id, 
+				status_text
+			FROM status_text
+			WHERE langu = iv_langu;
+END

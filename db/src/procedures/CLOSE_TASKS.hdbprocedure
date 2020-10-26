@@ -1,0 +1,4 @@
+procedure close_tasks(in iv_project int)
+as begin
+ update tasks set status = 5 where project = :iv_project;
+end

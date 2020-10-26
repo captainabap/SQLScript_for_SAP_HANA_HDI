@@ -1,0 +1,13 @@
+function udf_tage(id int, iv_von date, iv_bis date)
+returns table (id int, datum date)
+as begin
+ return SELECT :id as id,
+               GENERATED_PERIOD_START as datum 
+               FROM SERIES_GENERATE_DATE( INCREMENT_BY => 'INTERVAL 1 DAY',
+                                          MIN_VALUE => :iv_von,
+                                          MAX_VALUE => :iv_bis )
+        UNION
+        SELECT :ID as id,
+               :iv_bis as datum
+               from dummy;
+end;

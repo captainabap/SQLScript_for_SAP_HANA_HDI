@@ -1,0 +1,4 @@
+procedure show_error_log(in iv_seconds int default 10)
+as begin
+    select * from error_log where timestamp > add_seconds( current_timestamp, -1 * iv_seconds ) order by id desc;
+end;

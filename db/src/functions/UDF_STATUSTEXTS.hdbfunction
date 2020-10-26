@@ -1,0 +1,11 @@
+FUNCTION "UDF_STATUSTEXTS"(iv_langu VARCHAR(2) )
+RETURNS TABLE ( id INT,
+                status_text VARCHAR(20) )
+       LANGUAGE SQLSCRIPT 
+       SQL SECURITY INVOKER AS 
+BEGIN 
+   RETURN SELECT id,
+                 status_text
+   FROM status_text
+   WHERE langu = :iv_langu;
+END;

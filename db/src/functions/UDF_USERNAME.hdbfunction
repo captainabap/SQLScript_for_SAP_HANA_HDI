@@ -1,0 +1,7 @@
+FUNCTION "UDF_USERNAME"(iv_id int )
+returns rv_name nvarchar(42)
+       LANGUAGE SQLSCRIPT 
+       SQL SECURITY INVOKER AS 
+BEGIN 
+select lastname || ', ' || firstname into rv_name from users where id = :iv_id;
+END;
