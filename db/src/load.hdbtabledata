@@ -11,5 +11,65 @@
 				"delimiter": ","
 			}
 		} 
+	},
+	{
+		"target_table": "PROJECTS",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "PROJECTS.csv",
+			"has_header": true,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		} 
+	},
+	{
+		"target_table": "STATUS",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "STATUS.csv",
+			"has_header": true,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		} 
+	},
+	{
+		"target_table": "STATUS_TEXT",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "STATUS_TEXT.csv",
+			"has_header": true,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		} 
+	},
+	{
+		"target_table": "TEAM_TEXT",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "TEAM_TEXT.csv",
+			"has_header": true,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		} 
+	},
+	{
+		"target_table": "USERS",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "USERS.csv",
+			"has_header": true,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		} 
 	}]
 }
