@@ -1,0 +1,13 @@
+column table "TASKS"(
+	id INT PRIMARY KEY comment 'Task ID',
+	project INT comment 'Project ID',
+	title NVARCHAR(40) comment 'Task Title',
+	description CLOB comment 'Task description', 
+	status INT,
+	assignee INT,
+	planned_effort INT,
+	effort INT,
+	create_date DATE,
+	due_date DATE,
+	completed INT
+)
