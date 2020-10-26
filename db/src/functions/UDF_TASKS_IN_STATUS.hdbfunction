@@ -1,4 +1,4 @@
-create function udf_tasks_in_status(iv_status int)
+function udf_tasks_in_status(iv_status int)
 returns table(id int, assignee int, status int, title varchar(20))
 as begin
 return select id, assignee, status, title from tasks where status = :iv_status;

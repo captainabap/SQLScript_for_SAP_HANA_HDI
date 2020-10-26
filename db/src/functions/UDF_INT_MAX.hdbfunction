@@ -1,4 +1,4 @@
-udf_int_max(iv_wert1 int, iv_wert2 int)
+function udf_int_max(iv_wert1 int, iv_wert2 int)
 returns rv_result int
 as begin
 select case when :iv_wert1 > :iv_wert2
