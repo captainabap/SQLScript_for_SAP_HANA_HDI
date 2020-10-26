@@ -4,8 +4,8 @@
 		"target_table": "TASKS",
 		"source_data": {
 			"data_type": "CSV",
-			"file_name": "data/TASKS.csv",
-			"has_header": false,
+			"file_name": "TASKS.csv",
+			"has_header": true,
 			"dialect": "HANA",
 			"type_config": {
 				"delimiter": ","
