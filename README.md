@@ -1,3 +1,5 @@
-# SQLScript_for_SAP_HANA_HDI
+# XSA Project: SQLScript for SAP HANA 
 
-This repository contains the demo data model for my book SQLScript for SAP HANA and for all my training courses. 
+This repository contains the demo data model for my book SQLScript for SAP HANA and for all my training courses as a project for the XSA. 
+
+
