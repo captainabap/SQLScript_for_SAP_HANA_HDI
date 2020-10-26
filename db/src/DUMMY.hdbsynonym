@@ -4,5 +4,11 @@
       "object": "DUMMY",
       "schema": "SYS"
     }
+  }  ,
+  "SERIES_GENERATE_DATE": {
+    "target": {
+      "object": "SERIES_GENERATE_DATE",
+      "schema": "SYS"
+    }
   }
 }
