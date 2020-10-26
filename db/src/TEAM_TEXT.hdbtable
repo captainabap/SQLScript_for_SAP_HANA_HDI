@@ -1,0 +1,6 @@
+column table team_text(
+    id int ,
+    langu varchar(2),
+    team_text nvarchar(20),
+    primary key (id, langu)
+)

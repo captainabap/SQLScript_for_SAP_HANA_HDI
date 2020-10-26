@@ -1,0 +1,9 @@
+column table status_Text(
+	id INT,
+	langu VARCHAR(2),
+	status_text NVARCHAR(20),
+	PRIMARY KEY (
+		id,
+		langu
+	)
+)

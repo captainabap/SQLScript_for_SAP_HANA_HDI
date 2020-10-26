@@ -1,0 +1,10 @@
+column table tasks_log(
+	task INT,
+	timestamp TIMESTAMP,
+	status INT,
+	users INT,
+	PRIMARY KEY (
+		task,
+		timestamp
+	)
+)

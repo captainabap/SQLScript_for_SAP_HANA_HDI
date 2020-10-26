@@ -1,0 +1,4 @@
+column table status(
+	id int primary key , 
+is_final boolean, 
+is_open boolean);

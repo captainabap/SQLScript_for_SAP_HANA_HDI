@@ -1,0 +1,8 @@
+COLUMN TABLE users(
+	id INT PRIMARY KEY,
+	firstname NVARCHAR(20),
+	lastname NVARCHAR(20),
+	email NVARCHAR(50), 
+	sex VARCHAR(1),
+	team int
+)

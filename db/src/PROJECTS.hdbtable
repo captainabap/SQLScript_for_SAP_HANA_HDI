@@ -1,0 +1,8 @@
+column table projects(
+	id INT PRIMARY KEY,
+	title NVARCHAR(40),
+	project_manager INT,
+	estimated_effort INT,
+	start_date DATE,
+	status int
+)
