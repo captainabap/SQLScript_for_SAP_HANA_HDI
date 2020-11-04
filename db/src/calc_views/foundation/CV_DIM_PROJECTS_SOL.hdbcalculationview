@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_DIM_PROJECTS_SOL" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Übung: Dimension View Projects"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="PROJECTS">
+    <resourceUri>PROJECTS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="PROJECTS">
+  <attributes>
+    <attribute id="PROJECTID" order="1" descriptionColumnName="PROJECTTITLE" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="PROJECTS" columnName="ID"/>
+    </attribute>
+    <attribute id="PROJECTTITLE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TITLE"/>
+      <keyMapping columnObjectName="PROJECTS" columnName="TITLE"/>
+    </attribute>
+    <attribute id="PROJECT_MANAGER" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PROJECT_MANAGER"/>
+      <keyMapping columnObjectName="PROJECTS" columnName="PROJECT_MANAGER"/>
+    </attribute>
+    <attribute id="ESTIMATED_EFFORT" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ESTIMATED_EFFORT"/>
+      <keyMapping columnObjectName="PROJECTS" columnName="ESTIMATED_EFFORT"/>
+    </attribute>
+    <attribute id="START_DATE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="START_DATE"/>
+      <keyMapping columnObjectName="PROJECTS" columnName="START_DATE"/>
+    </attribute>
+    <attribute id="STATUS" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STATUS"/>
+      <keyMapping columnObjectName="PROJECTS" columnName="STATUS"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
