@@ -1,13 +1,13 @@
-ID,LANGU,STATUS_TEXT
-1,DE,Neu
-2,DE,Offen
-1,EN,New
-2,EN,Open
-3,DE,In Bearbeitung
-3,EN,in Processing
-4,DE,Erledigt
-4,EN,Done
-5,DE,Geschlossen
-5,EN,Closed
-6,DE,Verworfen
-6,EN,Canceled
+ID,LANGU,SPRAS,STATUS_TEXT
+1,DE,D,Neu
+2,DE,D,Offen
+1,EN,E,New
+2,EN,E,Open
+3,DE,D,In Bearbeitung
+3,EN,E,in Processing
+4,DE,D,Erledigt
+4,EN,E,Done
+5,DE,D,Geschlossen
+5,EN,E,Closed
+6,DE,D,Verworfen
+6,EN,E,Canceled

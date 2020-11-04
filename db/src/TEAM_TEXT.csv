@@ -1,15 +1,15 @@
-ID,LANGU,TEAM_TEXT
-1,DE,Entwicklung
-2,DE,Support
-3,DE,Beratung
-4,DE,Produktmanagement
-5,DE,QA
-6,DE,Backoffice
-7,DE,IT & Admins
-1,EN,Development
-2,EN,Support
-3,EN,Consulting
-4,EN,Productmanagement
-5,EN,QA
-6,EN,Backoffice
-7,EN,IT & Admins
+ID,LANGU,SPRAS,TEAM_TEXT
+1,DE,D,Entwicklung
+2,DE,D,Support
+3,DE,D,Beratung
+4,DE,D,Produktmanagement
+5,DE,D,QA
+6,DE,D,Backoffice
+7,DE,D,IT & Admins
+1,EN,E,Development
+2,EN,E,Support
+3,EN,E,Consulting
+4,EN,E,Productmanagement
+5,EN,E,QA
+6,EN,E,Backoffice
+7,EN,E,IT & Admins
