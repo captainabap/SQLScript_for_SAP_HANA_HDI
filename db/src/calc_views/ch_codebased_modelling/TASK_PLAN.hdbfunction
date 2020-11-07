@@ -5,12 +5,29 @@ returns table(
 	EFFORT integer,
 	PLANNED_EFFORT integer,
 	REMAIN_EFFORT integer,
-	REMAIN_EFFORT_INC integer
+	REMAIN_EFFORT_INC decimal(10,2)
 )
 language SQLSCRIPT
 SQL SECURITY INVOKER AS
 BEGIN
 
-return SELECT ID, TITLE, EFFORT, PLANNED_EFFORT, 0 as REMAIN_EFFORT, 0 AS REMAIN_EFFORT_INC from TASKS;
+-- Inbound projection
+lt_tasks = SELECT * from TASKS;
+
+-- Calculate Remaining effort (Column REMAIN_EFFORT)
+lt_tasks_w_remain = SELECT *, PLANNED_EFFORT - EFFORT as REMAIN_EFFORT FROM :lt_tasks;
+
+-- Increase remaing effort (Column REMAIN_EFFORT_INC)
+lt_tasks_remain_inc = SELECT *, 
+					  REMAIN_EFFORT * (1 + :i_steigerung / 100 ) as REMAIN_EFFORT_INC
+					  FROM :lt_tasks_w_remain;			 
+
+
+return SELECT ID,
+			 TITLE,
+			 EFFORT,
+			 PLANNED_EFFORT,
+			 REMAIN_EFFORT, 
+			 REMAIN_EFFORT_INC from :lt_tasks_remain_inc;
 
 END;

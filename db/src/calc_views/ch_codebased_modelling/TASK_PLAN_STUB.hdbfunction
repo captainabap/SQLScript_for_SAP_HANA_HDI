@@ -1,0 +1,16 @@
+function "TASK_PLAN_STUB" ( i_steigerung integer default 0 ) -- Increase REMAIN_EFFORT in percent
+returns table(
+	ID integer, -- ID of TASK
+	TITLE nvarchar(40), -- TITLE of TASK
+	EFFORT integer,
+	PLANNED_EFFORT integer,
+	REMAIN_EFFORT integer,
+	REMAIN_EFFORT_INC integer
+)
+language SQLSCRIPT
+SQL SECURITY INVOKER AS
+BEGIN
+
+return SELECT ID, TITLE, EFFORT, PLANNED_EFFORT, 0 as REMAIN_EFFORT, 0 AS REMAIN_EFFORT_INC from TASKS;
+
+END;
