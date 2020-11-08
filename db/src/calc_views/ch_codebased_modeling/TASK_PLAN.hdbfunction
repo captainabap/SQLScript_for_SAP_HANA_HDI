@@ -2,6 +2,7 @@ function "TASK_PLAN" ( i_steigerung integer default 0 ) -- Increase REMAIN_EFFOR
 returns table(
 	ID integer, -- ID of TASK
 	TITLE nvarchar(40), -- TITLE of TASK
+	PROJECT integer, -- PROJECT of TASK
 	EFFORT integer,
 	PLANNED_EFFORT integer,
 	REMAIN_EFFORT integer,
@@ -25,6 +26,7 @@ lt_tasks_remain_inc = SELECT *,
 
 return SELECT ID,
 			 TITLE,
+			 PROJECT,
 			 EFFORT,
 			 PLANNED_EFFORT,
 			 REMAIN_EFFORT, 

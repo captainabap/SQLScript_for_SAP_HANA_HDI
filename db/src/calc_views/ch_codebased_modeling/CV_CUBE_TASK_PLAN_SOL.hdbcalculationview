@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" id="CV_CUBE_TASK_PLAN_SOL" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Calculation View: Tabellenfunktion TASK_PLAN (Lösung)"/>
+<localVariables>
+  <variable id="IP_STEIGERUNG" parameter="true">
+    <descriptions defaultDescription="Steigerung in %"/>
+    <variableProperties datatype="INTEGER" mandatory="true">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:TableFunctionView" id="TableFunction_1" tableFunctionName="TASK_PLAN">
+    <viewAttributes/>
+    <calculatedViewAttributes/>
+    <variableMapping xsi:type="Variable:VariableMapping">
+      <targetVariable name="I_STEIGERUNG"/>
+      <localVariable>IP_STEIGERUNG</localVariable>
+    </variableMapping>
+  </calculationView>
+</calculationViews>
+<logicalModel id="TableFunction_1">
+  <attributes>
+    <attribute id="ID" order="1">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="ID"/>
+    </attribute>
+    <attribute id="TITLE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TITLE"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="TITLE"/>
+    </attribute>
+    <attribute id="PROJECT" order="3">
+      <descriptions defaultDescription="PROJECT"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="PROJECT"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="EFFORT" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="EFFORT"/>
+      <measureMapping columnObjectName="TableFunction_1" columnName="EFFORT"/>
+    </measure>
+    <measure id="PLANNED_EFFORT" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PLANNED_EFFORT"/>
+      <measureMapping columnObjectName="TableFunction_1" columnName="PLANNED_EFFORT"/>
+    </measure>
+    <measure id="REMAIN_EFFORT_INC" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="REMAIN_EFFORT_INC"/>
+      <measureMapping columnObjectName="TableFunction_1" columnName="REMAIN_EFFORT_INC"/>
+    </measure>
+    <measure id="REMAIN_EFFORT" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="REMAIN_EFFORT"/>
+      <measureMapping columnObjectName="TableFunction_1" columnName="REMAIN_EFFORT"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="TableFunction_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="208"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
