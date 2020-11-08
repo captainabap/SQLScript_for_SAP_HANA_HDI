@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_CUBE_TEST" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CV_CUBE_TEST"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="TASKS">
+    <resourceUri>TASKS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="TASKS">
+  <attributes>
+    <attribute id="ID" order="1">
+      <descriptions defaultDescription="Task ID"/>
+      <keyMapping columnObjectName="TASKS" columnName="ID"/>
+    </attribute>
+    <attribute id="PROJECT" order="2">
+      <descriptions defaultDescription="Project ID"/>
+      <keyMapping columnObjectName="TASKS" columnName="PROJECT"/>
+    </attribute>
+    <attribute id="TITLE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Task Title"/>
+      <keyMapping columnObjectName="TASKS" columnName="TITLE"/>
+    </attribute>
+    <attribute id="STATUS" order="4">
+      <descriptions defaultDescription="STATUS"/>
+      <keyMapping columnObjectName="TASKS" columnName="STATUS"/>
+    </attribute>
+    <attribute id="ASSIGNEE" order="5">
+      <descriptions defaultDescription="ASSIGNEE"/>
+      <keyMapping columnObjectName="TASKS" columnName="ASSIGNEE"/>
+    </attribute>
+    <attribute id="CREATE_DATE" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CREATE_DATE"/>
+      <keyMapping columnObjectName="TASKS" columnName="CREATE_DATE"/>
+    </attribute>
+    <attribute id="DUE_DATE" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DUE_DATE"/>
+      <keyMapping columnObjectName="TASKS" columnName="DUE_DATE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="PLANNED_EFFORT" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PLANNED_EFFORT"/>
+      <measureMapping columnObjectName="TASKS" columnName="PLANNED_EFFORT"/>
+    </measure>
+    <measure id="EFFORT" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="EFFORT"/>
+      <measureMapping columnObjectName="TASKS" columnName="EFFORT"/>
+    </measure>
+    <measure id="COMPLETED" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="COMPLETED"/>
+      <measureMapping columnObjectName="TASKS" columnName="COMPLETED"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures>
+    <measure id="RES_1" order="11" aggregationType="sum" datatype="INTEGER" length="" scale="0" baseMeasure="EFFORT" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;STATUS&quot; = 3</restrictionExpression>
+      </measure>
+  </restrictedMeasures>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
