@@ -1,0 +1,7 @@
+COLUMN TABLE users_td(
+	id INT,
+	datefrom date,
+	dateto date,
+	team int,
+	primary key (id, datefrom)
+)

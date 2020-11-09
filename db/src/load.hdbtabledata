@@ -71,5 +71,19 @@
 				"delimiter": ","
 			}
 		} 
-	}]
+	},
+	{
+		"target_table": "USERS_TD",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "USERS_TD.csv",
+			"has_header": true,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		} 
+	}
+	
+	]
 }
