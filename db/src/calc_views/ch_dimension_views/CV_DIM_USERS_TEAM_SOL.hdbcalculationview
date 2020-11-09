@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_DIM_USERS_TEAM_SOL" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Dimension view USERS"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="USERS">
+    <resourceUri>USERS</resourceUri>
+  </DataSource>
+  <DataSource id="TEAM_TEXT">
+    <resourceUri>TEAM_TEXT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_USERS">
+    <viewAttributes>
+      <viewAttribute id="USERID"/>
+      <viewAttribute id="FIRSTNAME"/>
+      <viewAttribute id="LASTNAME"/>
+      <viewAttribute id="EMAIL"/>
+      <viewAttribute id="SEX"/>
+      <viewAttribute id="TEAM"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="DISPLAY_NAME" datatype="NVARCHAR" length="41" expressionLanguage="SQL">
+        <formula>&quot;FIRSTNAME&quot; || ' ' || &quot;LASTNAME&quot;</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="USERS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="USERID" source="ID"/>
+    </input></calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_TEAM_TEXT">
+    <viewAttributes>
+      <viewAttribute id="TEAM_ID"/>
+      <viewAttribute id="LANGU"/>
+      <viewAttribute id="SPRAS"/>
+      <viewAttribute id="TEAM_TEXT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TEAM_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAM_ID" source="ID"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_USERS_TEAM_TEXT" cardinality="C1_1" joinType="textTable" languageColumn="SPRAS">
+    <viewAttributes>
+      <viewAttribute id="USERID"/>
+      <viewAttribute id="FIRSTNAME"/>
+      <viewAttribute id="LASTNAME"/>
+      <viewAttribute id="EMAIL"/>
+      <viewAttribute id="SEX"/>
+      <viewAttribute id="TEAM"/>
+      <viewAttribute id="DISPLAY_NAME"/>
+      <viewAttribute id="LANGU"/>
+      <viewAttribute id="TEAM_TEXT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="P_USERS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="USERID" source="USERID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FIRSTNAME" source="FIRSTNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LASTNAME" source="LASTNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL" source="EMAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SEX" source="SEX"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAM" source="TEAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DISPLAY_NAME" source="DISPLAY_NAME"/>
+    </input>
+    <input node="P_TEAM_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="LANGU" source="LANGU"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAM_TEXT" source="TEAM_TEXT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAM" source="TEAM_ID"/>
+    </input>
+    <joinAttribute name="TEAM"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="J_USERS_TEAM_TEXT">
+  <attributes>
+    <attribute id="USERID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="USERID"/>
+      <keyMapping columnObjectName="J_USERS_TEAM_TEXT" columnName="USERID"/>
+    </attribute>
+    <attribute id="FIRSTNAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FIRSTNAME"/>
+      <keyMapping columnObjectName="J_USERS_TEAM_TEXT" columnName="FIRSTNAME"/>
+    </attribute>
+    <attribute id="LASTNAME" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LASTNAME"/>
+      <keyMapping columnObjectName="J_USERS_TEAM_TEXT" columnName="LASTNAME"/>
+    </attribute>
+    <attribute id="DISPLAY_NAME" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DISPLAY_NAME"/>
+      <keyMapping columnObjectName="J_USERS_TEAM_TEXT" columnName="DISPLAY_NAME"/>
+    </attribute>
+    <attribute id="TEAM" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TEAM"/>
+      <keyMapping columnObjectName="J_USERS_TEAM_TEXT" columnName="TEAM"/>
+    </attribute>
+    <attribute id="TEAM_TEXT" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TEAM_TEXT"/>
+      <keyMapping columnObjectName="J_USERS_TEAM_TEXT" columnName="TEAM_TEXT"/>
+    </attribute>
+    <attribute id="EMAIL" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EMAIL"/>
+      <keyMapping columnObjectName="J_USERS_TEAM_TEXT" columnName="EMAIL"/>
+    </attribute>
+    <attribute id="SEX" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SEX"/>
+      <keyMapping columnObjectName="J_USERS_TEAM_TEXT" columnName="SEX"/>
+    </attribute>
+    <attribute id="LANGU" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LANGU"/>
+      <keyMapping columnObjectName="J_USERS_TEAM_TEXT" columnName="LANGU"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="208" y="112"/>
+    
+      <rectangleSize width="220"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_USERS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_TEAM_TEXT" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="301" y="376"/>
+      <rectangleSize height="30" width="203"/>
+    </shape>
+    <shape expanded="true" modelObjectName="J_USERS_TEAM_TEXT" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="178" y="217"/>
+      <rectangleSize height="30" width="279"/>
+    </shape>
+    <shape modelObjectName="P_USERS" modelObjectNameSpace="J_USERS_TEAM_TEXT" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="164"/>
+    </shape>
+    <shape modelObjectName="P_TEAM_TEXT" modelObjectNameSpace="J_USERS_TEAM_TEXT" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="147"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

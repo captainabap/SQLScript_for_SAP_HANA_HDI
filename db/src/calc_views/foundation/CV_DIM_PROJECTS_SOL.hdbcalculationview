@@ -11,7 +11,7 @@
 <calculationViews/>
 <logicalModel id="PROJECTS">
   <attributes>
-    <attribute id="PROJECTID" order="1" descriptionColumnName="PROJECTTITLE" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="PROJECTID" order="1" descriptionColumnName="PROJECTTITLE" displayAttribute="false" attributeHierarchyActive="false" key="true">
       <descriptions defaultDescription="ID"/>
       <keyMapping columnObjectName="PROJECTS" columnName="ID"/>
     </attribute>
