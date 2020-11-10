@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="CV_DIM_TIME_TEST" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="TIME" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="CV_CUBE_TIME_TEST" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="TIME" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
 <descriptions defaultDescription="CV_DIM_TIME_TEST"/>
 <localVariables>
   <variable id="VAR_1">
     <descriptions defaultDescription=""/>
     <variableProperties defaultValue="">
-     <valueDomain type="AttributeValue">
-          <attribute name="CALMONTH"/>
-          <hierarchyName>LEVEL_1</hierarchyName>
-        </valueDomain>
+      <valueDomain type="AttributeValue">
+        <attribute name="CALMONTH"/>
+        <hierarchyName>LEVEL_1</hierarchyName>
+      </valueDomain>
       <selection type="SingleValue"/>
     </variableProperties>
   </variable>
@@ -69,7 +69,13 @@
       <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="CALWEEK"/>
     </attribute>
   </attributes>
-  <calculatedAttributes/>
+  <calculatedAttributes>
+    <calculatedAttribute id="CC_1" order="10" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="INTEGER" expressionLanguage="SQL">
+        <formula>1</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
   <baseMeasures/>
   <calculatedMeasures/>
   <restrictedMeasures/>
