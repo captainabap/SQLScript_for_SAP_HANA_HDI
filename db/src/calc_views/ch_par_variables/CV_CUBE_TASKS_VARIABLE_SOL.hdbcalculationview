@@ -4,8 +4,12 @@
 <localVariables>
   <variable id="IV_USER">
     <descriptions defaultDescription="IV_USER"/>
-    <variableProperties defaultValue="">
-      <valueDomain type="AttributeValue"/>
+    <variableProperties defaultValue="" datatype="INTEGER" length="10" scale="0">
+      <valueDomain type="AttributeValue">
+        <externalLikeStructureName>CV_DIM_USERS_SOL</externalLikeStructureName>
+        <externalLikeStructureType>CALCULATION_VIEW</externalLikeStructureType>
+        <externalLikeElementName>USERID</externalLikeElementName>
+      </valueDomain>
       <selection type="SingleValue"/>
     </variableProperties>
   </variable>
@@ -37,6 +41,7 @@
     </attribute>
     <attribute id="ASSIGNEE" order="5" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ASSIGNEE"/>
+      <localVariable>IV_USER</localVariable>
       <keyMapping columnObjectName="TASKS" columnName="ASSIGNEE"/>
     </attribute>
     <attribute id="CREATE_DATE" order="8" displayAttribute="false" attributeHierarchyActive="false">
