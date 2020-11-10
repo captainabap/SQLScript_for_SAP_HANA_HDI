@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_CUBE_TASKS_W_STATUS" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="undefined::CV_CUBE_TASKS_W_STATUS_SOL" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
 <descriptions defaultDescription="Cube: Tasks with Status"/>
 <localVariables/>
 <variableMappings/>
@@ -156,9 +156,22 @@ end</formula>
         THEN 1
      ELSE 0
  END</formula>
-      </measure>
+       </measure>
+ <measure id="COUNT_TASKS" order="16" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" aggregatable="true" datatype="BIGINT" length="">
+   <descriptions defaultDescription="COUNT_TASKS"/>
+      <exceptionAggregation>
+        <attribute attributeName="TASKID"/>
+      </exceptionAggregation>
+      <formula>1</formula>
+    </measure>
+ 
   </calculatedMeasures>
-  <restrictedMeasures/>
+  <restrictedMeasures>
+    <measure id="EFFORT_IN_PROCESS" order="17" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="EFFORT" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="Aufwände zu Aufgaben in Bearbeitung"/>
+      <restrictionExpression>&quot;STATUS&quot; = 3</restrictionExpression>
+    </measure>
+  </restrictedMeasures>
   <localDimensions/>
 </logicalModel>
 <layout>

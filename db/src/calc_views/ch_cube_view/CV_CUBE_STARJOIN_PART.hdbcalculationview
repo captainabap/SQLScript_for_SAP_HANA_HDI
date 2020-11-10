@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_CUBE_STARJOIN_PART" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Starjoin TASKS und DIM STATUS"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CV_CUBE_TASKS_SOL">
+    <resourceUri>CV_CUBE_TASKS_SOL</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="PROJECT"/>
+      <viewAttribute id="TITLE"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="ASSIGNEE"/>
+      <viewAttribute id="PLANNED_EFFORT" aggregationType="sum"/>
+      <viewAttribute id="EFFORT" aggregationType="sum"/>
+      <viewAttribute id="CREATE_DATE"/>
+      <viewAttribute id="DUE_DATE"/>
+      <viewAttribute id="COMPLETED" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="CV_CUBE_TASKS_SOL"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Aggregation_1">
+  <attributes>
+    <attribute id="ID" order="1" semanticType="empty">
+      <descriptions defaultDescription="Task ID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="ID"/>
+    </attribute>
+    <attribute id="PROJECT" order="2" semanticType="empty">
+      <descriptions defaultDescription="Project ID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="PROJECT"/>
+    </attribute>
+    <attribute id="TITLE" order="3" semanticType="empty" descriptionColumnName="TITLE" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Task Title"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="TITLE"/>
+    </attribute>
+    <attribute id="STATUS" order="4" semanticType="empty">
+      <descriptions defaultDescription="STATUS"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="STATUS"/>
+    </attribute>
+    <attribute id="ASSIGNEE" order="5" semanticType="empty">
+      <descriptions defaultDescription="ASSIGNEE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="ASSIGNEE"/>
+    </attribute>
+    <attribute id="CREATE_DATE" order="8" semanticType="empty" descriptionColumnName="CREATE_DATE" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CREATE_DATE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="CREATE_DATE"/>
+    </attribute>
+    <attribute id="DUE_DATE" order="9" semanticType="empty" descriptionColumnName="DUE_DATE" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DUE_DATE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="DUE_DATE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="PLANNED_EFFORT" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PLANNED_EFFORT"/>
+      <measureMapping columnObjectName="Aggregation_1" columnName="PLANNED_EFFORT"/>
+    </measure>
+    <measure id="EFFORT" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="EFFORT"/>
+      <measureMapping columnObjectName="Aggregation_1" columnName="EFFORT"/>
+    </measure>
+    <measure id="COMPLETED" order="10" aggregationType="avg" engineAggregation="sum" measureType="simple">
+      <descriptions defaultDescription="COMPLETED"/>
+      <measureMapping columnObjectName="Aggregation_1" columnName="COMPLETED"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+  <sharedDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="11" y="196"/>
+      <rectangleSize height="30" width="249"/>
+    </shape>
+    <shape modelObjectName="Aggregation_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

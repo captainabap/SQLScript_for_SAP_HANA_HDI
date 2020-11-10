@@ -73,7 +73,7 @@
 </calculationViews>
 <logicalModel id="J_USERS_TEAM_TEXT">
   <attributes>
-    <attribute id="USERID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="USERID" order="1" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="DISPLAY_NAME">
       <descriptions defaultDescription="USERID"/>
       <keyMapping columnObjectName="J_USERS_TEAM_TEXT" columnName="USERID"/>
     </attribute>
@@ -89,7 +89,7 @@
       <descriptions defaultDescription="DISPLAY_NAME"/>
       <keyMapping columnObjectName="J_USERS_TEAM_TEXT" columnName="DISPLAY_NAME"/>
     </attribute>
-    <attribute id="TEAM" order="5" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="TEAM" order="5" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="TEAM_TEXT">
       <descriptions defaultDescription="TEAM"/>
       <keyMapping columnObjectName="J_USERS_TEAM_TEXT" columnName="TEAM"/>
     </attribute>

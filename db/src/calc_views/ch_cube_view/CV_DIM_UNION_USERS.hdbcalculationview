@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_DIM_UNION_USERS" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Dim: Projektleiter und Bearbeiter von Aufgaben"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="TASKS">
+    <resourceUri>TASKS</resourceUri>
+  </DataSource>
+  <DataSource id="PROJECTS">
+    <resourceUri>PROJECTS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_ASSIGNEE_TASKS">
+    <viewAttributes>
+      <viewAttribute id="ASSIGNEE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TASKS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_PROJECT_MANAGER">
+    <viewAttributes>
+      <viewAttribute id="USERID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PROJECTS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="USERID" source="PROJECT_MANAGER"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="U_USERS_WTH_PROJECT_OR_TASKS">
+    <viewAttributes>
+      <viewAttribute id="USERID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="P_PROJECT_MANAGER" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="USERID" source="USERID"/>
+    </input>
+    <input node="P_ASSIGNEE_TASKS" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="USERID" source="ASSIGNEE"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="U_USERS_WTH_PROJECT_OR_TASKS">
+  <attributes>
+    <attribute id="USERID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="USERID"/>
+      <keyMapping columnObjectName="U_USERS_WTH_PROJECT_OR_TASKS" columnName="USERID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="439" y="112"/>
+    
+      <rectangleSize width="214"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_ASSIGNEE_TASKS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="496"/>
+      <rectangleSize height="30" width="255"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_PROJECT_MANAGER" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="397" y="496"/>
+      <rectangleSize height="30" width="222"/>
+    </shape>
+    <shape expanded="true" modelObjectName="U_USERS_WTH_PROJECT_OR_TASKS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="200" y="361"/>
+      <rectangleSize height="30" width="316"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

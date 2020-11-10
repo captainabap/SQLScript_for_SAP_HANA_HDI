@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_DIM_STATUS_TEXT_SOL" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Status mit Text"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="STATUS">
+    <resourceUri>STATUS</resourceUri>
+  </DataSource>
+  <DataSource id="STATUS_TEXT">
+    <resourceUri>STATUS_TEXT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="textTable" languageColumn="SPRAS">
+    <viewAttributes>
+      <viewAttribute id="STATUSID"/>
+      <viewAttribute id="IS_FINAL"/>
+      <viewAttribute id="IS_OPEN"/>
+      <viewAttribute id="STATUS_TEXT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="P_STATUS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUSID" source="STATUSID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="IS_FINAL" source="IS_FINAL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="IS_OPEN" source="IS_OPEN"/>
+    </input>
+    <input node="P_STATUS_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_TEXT" source="STATUS_TEXT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUSID" source="STATUSID"/>
+    </input>
+    <joinAttribute name="STATUSID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_STATUS">
+    <viewAttributes>
+      <viewAttribute id="STATUSID"/>
+      <viewAttribute id="IS_FINAL"/>
+      <viewAttribute id="IS_OPEN"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="STATUS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUSID" source="ID"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_STATUS_TEXT">
+    <viewAttributes>
+      <viewAttribute id="STATUS_TEXT"/>
+    
+      <viewAttribute id="STATUSID"/>
+      <viewAttribute id="SPRAS"/>
+      <viewAttribute id="LANGU"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="STATUS_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUSID" source="ID"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="STATUSID" key="true" order="1" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="STATUS_TEXT">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="STATUSID"/>
+    </attribute>
+    <attribute id="IS_FINAL" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="IS_FINAL"/>
+      <keyMapping columnObjectName="Join_1" columnName="IS_FINAL"/>
+    </attribute>
+    <attribute id="IS_OPEN" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="IS_OPEN"/>
+      <keyMapping columnObjectName="Join_1" columnName="IS_OPEN"/>
+    </attribute>
+    <attribute id="STATUS_TEXT" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STATUS_TEXT"/>
+      <keyMapping columnObjectName="Join_1" columnName="STATUS_TEXT"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="P_STATUS" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="134"/>
+    </shape>
+    <shape modelObjectName="P_STATUS_TEXT" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="156"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_STATUS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_STATUS_TEXT" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
