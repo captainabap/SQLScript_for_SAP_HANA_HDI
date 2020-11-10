@@ -25,9 +25,7 @@
     </calculatedViewAttributes>
     <input node="USERS">
       <mapping xsi:type="Calculation:AttributeMapping" target="USERID" source="ID"/>
-    </input>
-    <filter>&quot;TEAM&quot; = 3</filter>
-  </calculationView>
+    </input></calculationView>
 </calculationViews>
 <logicalModel id="P_USERS">
   <attributes>
