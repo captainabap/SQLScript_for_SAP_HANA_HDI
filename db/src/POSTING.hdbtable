@@ -1,0 +1,6 @@
+column table POSTING(
+	ACCOUNT INT,
+	BUDAT DATE,
+	AMOUNT int,
+	primary key(account,budat)
+)
