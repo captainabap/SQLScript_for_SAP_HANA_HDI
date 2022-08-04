@@ -95,6 +95,18 @@
 				"delimiter": ","
 			}
 		} 
+	},
+	{
+		"target_table": "ACCOUNT_SALES",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "ACCOUNT_SALES.csv",
+			"has_header": true,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		} 
 	}
 	
 	]

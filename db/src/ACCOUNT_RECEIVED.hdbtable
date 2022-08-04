@@ -1,0 +1,6 @@
+column table ACCOUNT_RECEIVED(
+	ACCOUNT INT,
+	BUDAT DATE,
+	RECEIVED_AMOUNT int,
+	primary key(account,budat)
+)
