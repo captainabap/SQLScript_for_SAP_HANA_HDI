@@ -1,0 +1,6 @@
+column table ACCOUNT_SALES(
+	ACCOUNT INT,
+	BUDAT DATE,
+	SALES_AMOUNT int,
+	primary key(account,budat)
+)
