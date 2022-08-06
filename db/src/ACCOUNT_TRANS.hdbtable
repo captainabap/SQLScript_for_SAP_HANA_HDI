@@ -1,0 +1,8 @@
+column table account_trans(
+
+ACCOUNT NVARCHAR(6),
+BUDAT date,
+valtype nvarchar(2),
+amount decimal(17,2),
+curr nvarchar(5),
+primary key(account, budat, valtype) )

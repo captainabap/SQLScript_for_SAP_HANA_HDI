@@ -1,0 +1,5 @@
+column table account(
+
+ACCOUNT NVARCHAR(6),
+acctype char(4),
+primary key(account) )

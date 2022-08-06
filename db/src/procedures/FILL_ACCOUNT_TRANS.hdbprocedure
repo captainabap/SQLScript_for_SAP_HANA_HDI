@@ -1,0 +1,23 @@
+procedure fill_account_trans()
+as begin
+ lt_valtype = select '10' as valtype from dummy union
+                 select '20' as valtype from dummy union
+                 select '30' as valtype from dummy;
+
+    insert into account_trans ( select  
+
+                                           a.account,
+                                           to_dats(d.generated_period_start) as budat,
+                                                                                      v.valtype ,
+                                           rand( ) * 100000 as amount ,
+                                           'EUR' as currency
+    from account as a
+    cross join :lt_valtype as v
+    cross join
+    SERIES_GENERATE_DATE( INCREMENT_BY => 'INTERVAL 1 DAY',
+                          MIN_VALUE =>date'2016-01-01' ,
+                          MAX_VALUE =>date'2016-12-31' ) as d
+
+     );
+     
+end
