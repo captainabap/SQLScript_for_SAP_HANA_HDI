@@ -1,0 +1,15 @@
+procedure fill_account()
+as
+begin
+
+declare la_nr varchar(2) array = array( '01', '02', '03', '04', '05', '07', '08', '10', '20',  '40', '50', '60', '70', '90');
+
+    lt_NR = unnest( :la_nr ) as ( nr );
+     
+    insert into account ( select nr1.nr||nr2.nr||nr3.nr as account,
+                                  lpad(ceil(rand()*5)*10, 4, '0') as acctyp
+                           from :lt_nr as nr1
+                           cross join :lt_nr as nr2
+                           cross join :lt_nr as nr3 );
+                           
+end                      

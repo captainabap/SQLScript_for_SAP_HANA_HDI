@@ -1,12 +1,15 @@
-function "TASK_PLAN" ( i_steigerung integer default 0 ) -- Increase REMAIN_EFFORT in percent
+function "TASK_PLAN_SOL" ( i_steigerung integer default 0 ) -- Increase REMAIN_EFFORT in percent
 returns table(
 	ID integer, -- ID of TASK
+	PROJECT integer,
 	TITLE nvarchar(40), -- TITLE of TASK
-	PROJECT integer, -- PROJECT of TASK
+	STATUS integer,
+	ASSIGNEE integer,
+	DUE_DATE date,
 	EFFORT integer,
 	PLANNED_EFFORT integer,
 	REMAIN_EFFORT integer,
-	REMAIN_EFFORT_INC decimal(10,2)
+	REMAIN_EFFORT_1 decimal(20,7)
 )
 language SQLSCRIPT
 SQL SECURITY INVOKER AS
@@ -20,16 +23,19 @@ lt_tasks_w_remain = SELECT *, PLANNED_EFFORT - EFFORT as REMAIN_EFFORT FROM :lt_
 
 -- Increase remaing effort (Column REMAIN_EFFORT_INC)
 lt_tasks_remain_inc = SELECT *, 
-					  REMAIN_EFFORT * (1 + :i_steigerung / 100 ) as REMAIN_EFFORT_INC
+					  REMAIN_EFFORT * (1 + :i_steigerung / 100 ) as REMAIN_EFFORT_1
 					  FROM :lt_tasks_w_remain;			 
 
 
 return SELECT ID,
-			 TITLE,
 			 PROJECT,
+			 TITLE,
+			 STATUS,
+			 ASSIGNEE,
+			 DUE_DATE,
 			 EFFORT,
 			 PLANNED_EFFORT,
 			 REMAIN_EFFORT, 
-			 REMAIN_EFFORT_INC from :lt_tasks_remain_inc;
+			 REMAIN_EFFORT_1 from :lt_tasks_remain_inc;
 
 END;

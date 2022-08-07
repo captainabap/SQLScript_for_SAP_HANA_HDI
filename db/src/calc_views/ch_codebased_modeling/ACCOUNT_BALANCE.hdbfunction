@@ -1,0 +1,26 @@
+FUNCTION "ACCOUNT_BALANCE"( )
+       RETURNS table(
+       	ACCOUNT NVARCHAR(6),
+		BUDAT date,
+		valtype nvarchar(2),
+		balance decimal(17,2),
+		curr nvarchar(5)
+       	)
+       LANGUAGE SQLSCRIPT 
+       SQL SECURITY INVOKER AS 
+BEGIN 
+    /*****************************
+        Write your function logic
+    ****************************/
+    -- Inbound
+    lt_acc_trans = SELECT ACCOUNT, BUDAT, VALTYPE, AMOUNT as DELTA, CURR FROM ACCOUNT_TRANS;
+    
+    -- Kumulierung mit Partition
+    lt_acc_balance = SELECT ACCOUNT, BUDAT, VALTYPE, SUM(DELTA) OVER (partition by ACCOUNT, VALTYPE, CURR ORDER BY BUDAT ASC) AS BALANCE, CURR FROM :lt_acc_trans;
+    
+    return SELECT ACCOUNT,
+    			  BUDAT,
+    			  VALTYPE,
+    			  BALANCE,
+    			  CURR FROM :lt_acc_balance;
+END;

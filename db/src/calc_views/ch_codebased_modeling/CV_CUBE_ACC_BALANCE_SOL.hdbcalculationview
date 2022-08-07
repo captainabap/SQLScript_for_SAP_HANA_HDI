@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_CUBE_ACC_BALANCE_SOL" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Calc View with table function ACCOUNT_BALANCE"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="ACCOUNT_TRANS">
+    <resourceUri>ACCOUNT_TRANS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:TableFunctionView" id="T_FUN_BALANCE" tableFunctionName="ACCOUNT_BALANCE">
+    <viewAttributes/>
+    <calculatedViewAttributes/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes>
+      <viewAttribute id="ACCOUNT"/>
+      <viewAttribute id="BUDAT"/>
+      <viewAttribute id="VALTYPE"/>
+      <viewAttribute id="AMOUNT" aggregationType="sum"/>
+      <viewAttribute id="CURR"/>
+      <viewAttribute id="BALANCE" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="P_AMOUNT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ACCOUNT" source="ACCOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BUDAT" source="BUDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VALTYPE" source="VALTYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AMOUNT" source="AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURR" source="CURR"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BALANCE" null="true" value=""/>
+    </input>
+    <input node="T_FUN_BALANCE">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ACCOUNT" source="ACCOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BUDAT" source="BUDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VALTYPE" source="VALTYPE"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AMOUNT" null="true" value=""/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURR" source="CURR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BALANCE" source="BALANCE"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_AMOUNT">
+    <viewAttributes>
+      <viewAttribute id="ACCOUNT"/>
+      <viewAttribute id="BUDAT"/>
+      <viewAttribute id="VALTYPE"/>
+      <viewAttribute id="AMOUNT"/>
+      <viewAttribute id="CURR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="ACCOUNT_TRANS"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="ACCOUNT" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ACCOUNT"/>
+      <keyMapping columnObjectName="Union_1" columnName="ACCOUNT"/>
+    </attribute>
+    <attribute id="BUDAT" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BUDAT"/>
+      <keyMapping columnObjectName="Union_1" columnName="BUDAT"/>
+    </attribute>
+    <attribute id="VALTYPE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VALTYPE"/>
+      <keyMapping columnObjectName="Union_1" columnName="VALTYPE"/>
+    </attribute>
+    <attribute id="CURR" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURR"/>
+      <keyMapping columnObjectName="Union_1" columnName="CURR"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="AMOUNT" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="AMOUNT"/>
+      <measureMapping columnObjectName="Union_1" columnName="AMOUNT"/>
+    </measure>
+    <measure id="BALANCE" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="BALANCE"/>
+      <measureMapping columnObjectName="Union_1" columnName="BALANCE"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221.11302679000914" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="T_FUN_BALANCE" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302.00000000000006" y="356.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221.11302679000914" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_AMOUNT" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92.00000000000001" y="356.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

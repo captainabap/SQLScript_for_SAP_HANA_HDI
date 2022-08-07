@@ -13,7 +13,7 @@
 <variableMappings/>
 <dataSources/>
 <calculationViews>
-  <calculationView xsi:type="Calculation:TableFunctionView" id="TableFunction_1" tableFunctionName="TASK_PLAN">
+  <calculationView xsi:type="Calculation:TableFunctionView" id="TableFunction_1" tableFunctionName="TASK_PLAN_SOL">
     <viewAttributes/>
     <calculatedViewAttributes/>
     <variableMapping xsi:type="Variable:VariableMapping">
@@ -24,36 +24,48 @@
 </calculationViews>
 <logicalModel id="TableFunction_1">
   <attributes>
-    <attribute id="ID" order="1">
-      <descriptions defaultDescription="ID"/>
-      <keyMapping columnObjectName="TableFunction_1" columnName="ID"/>
-    </attribute>
     <attribute id="TITLE" order="2" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="TITLE"/>
       <keyMapping columnObjectName="TableFunction_1" columnName="TITLE"/>
     </attribute>
-    <attribute id="PROJECT" order="3">
+    <attribute id="STATUS" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STATUS"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="STATUS"/>
+    </attribute>
+    <attribute id="ASSIGNEE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ASSIGNEE"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="ASSIGNEE"/>
+    </attribute>
+    <attribute id="DUE_DATE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DUE_DATE"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="DUE_DATE"/>
+    </attribute>
+    <attribute id="ID" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="ID"/>
+    </attribute>
+    <attribute id="PROJECT" order="8" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="PROJECT"/>
       <keyMapping columnObjectName="TableFunction_1" columnName="PROJECT"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
   <baseMeasures>
-    <measure id="EFFORT" order="4" aggregationType="sum" measureType="simple">
+    <measure id="REMAIN_EFFORT" order="1" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="REMAIN_EFFORT"/>
+      <measureMapping columnObjectName="TableFunction_1" columnName="REMAIN_EFFORT"/>
+    </measure>
+    <measure id="EFFORT" order="7" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="EFFORT"/>
       <measureMapping columnObjectName="TableFunction_1" columnName="EFFORT"/>
     </measure>
-    <measure id="PLANNED_EFFORT" order="5" aggregationType="sum" measureType="simple">
+    <measure id="REMAIN_EFFORT_1" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="REMAIN_EFFORT_1"/>
+      <measureMapping columnObjectName="TableFunction_1" columnName="REMAIN_EFFORT_1"/>
+    </measure>
+    <measure id="PLANNED_EFFORT" order="10" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="PLANNED_EFFORT"/>
       <measureMapping columnObjectName="TableFunction_1" columnName="PLANNED_EFFORT"/>
-    </measure>
-    <measure id="REMAIN_EFFORT_INC" order="6" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="REMAIN_EFFORT_INC"/>
-      <measureMapping columnObjectName="TableFunction_1" columnName="REMAIN_EFFORT_INC"/>
-    </measure>
-    <measure id="REMAIN_EFFORT" order="7" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="REMAIN_EFFORT"/>
-      <measureMapping columnObjectName="TableFunction_1" columnName="REMAIN_EFFORT"/>
     </measure>
   </baseMeasures>
   <calculatedMeasures/>
@@ -63,11 +75,12 @@
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="40" y="85"/>
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
     </shape>
-  
     <shape expanded="true" modelObjectName="TableFunction_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="100" y="208"/>
+      <upperLeftCorner x="92" y="217"/>
       <rectangleSize height="30" width="160"/>
     </shape>
   </shapes>
