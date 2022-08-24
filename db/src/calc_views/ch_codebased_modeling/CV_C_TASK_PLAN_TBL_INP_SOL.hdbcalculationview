@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" id="CV_C_TASK_PLAN_TBL_INP_SOL" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Calculation View mit tabellarischen Input-Parameter"/>
+<localVariables>
+  <variable id="I_STEIGERUNG" parameter="true">
+    <descriptions defaultDescription=" "/>
+    <variableProperties datatype="INTEGER" length="10">
+      <valueDomain type="empty"/>
+      <selection/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="TASKS">
+    <resourceUri>TASKS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:TableFunctionView" id="TableFunction_1" tableFunctionName="TASK_PLAN_TBL_INP_SOL">
+    <viewAttributes/>
+    <calculatedViewAttributes/>
+    <input node="Projection_1" tableParameterName="IT_INPUT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROJECT" source="PROJECT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TITLE" source="TITLE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PLANNED_EFFORT" source="PLANNED_EFFORT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EFFORT" source="EFFORT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DUE_DATE" source="DUE_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSIGNEE" source="ASSIGNEE"/>
+    </input>
+    <variableMapping xsi:type="Variable:VariableMapping">
+      <targetVariable name="I_STEIGERUNG"/>
+      <localVariable>I_STEIGERUNG</localVariable>
+    </variableMapping>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="PROJECT"/>
+      <viewAttribute id="TITLE"/>
+      <viewAttribute id="DESCRIPTION"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="ASSIGNEE"/>
+      <viewAttribute id="PLANNED_EFFORT"/>
+      <viewAttribute id="EFFORT"/>
+      <viewAttribute id="CREATE_DATE"/>
+      <viewAttribute id="DUE_DATE"/>
+      <viewAttribute id="COMPLETED"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TASKS"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="TableFunction_1">
+  <attributes>
+    <attribute id="ID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="ID"/>
+    </attribute>
+    <attribute id="PROJECT" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PROJECT"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="PROJECT"/>
+    </attribute>
+    <attribute id="TITLE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TITLE"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="TITLE"/>
+    </attribute>
+    <attribute id="STATUS" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STATUS"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="STATUS"/>
+    </attribute>
+    <attribute id="ASSIGNEE" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ASSIGNEE"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="ASSIGNEE"/>
+    </attribute>
+    <attribute id="DUE_DATE" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DUE_DATE"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="DUE_DATE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="REMAIN_EFFORT" order="1" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="REMAIN_EFFORT"/>
+      <measureMapping columnObjectName="TableFunction_1" columnName="REMAIN_EFFORT"/>
+    </measure>
+    <measure id="REMAIN_EFFORT_1" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="REMAIN_EFFORT_1"/>
+      <measureMapping columnObjectName="TableFunction_1" columnName="REMAIN_EFFORT_1"/>
+    </measure>
+    <measure id="EFFORT" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="EFFORT"/>
+      <measureMapping columnObjectName="TableFunction_1" columnName="EFFORT"/>
+    </measure>
+    <measure id="PLANNED_EFFORT" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PLANNED_EFFORT"/>
+      <measureMapping columnObjectName="TableFunction_1" columnName="PLANNED_EFFORT"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="TableFunction_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="187"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="340"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

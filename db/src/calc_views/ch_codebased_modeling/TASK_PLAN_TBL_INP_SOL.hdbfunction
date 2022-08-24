@@ -1,0 +1,50 @@
+function "TASK_PLAN_TBL_INP_SOL" ( 
+	it_input table( ID integer,
+					PROJECT integer,
+					TITLE nvarchar(40), -- TITLE of TASK
+					STATUS integer,
+					ASSIGNEE integer,
+					DUE_DATE date,
+					EFFORT integer,
+					PLANNED_EFFORT integer ),
+	i_steigerung integer default 0 ) -- Increase REMAIN_EFFORT in percent
+returns table(
+	ID integer, -- ID of TASK
+	PROJECT integer,
+	TITLE nvarchar(40), -- TITLE of TASK
+	STATUS integer,
+	ASSIGNEE integer,
+	DUE_DATE date,
+	EFFORT integer,
+	PLANNED_EFFORT integer,
+	REMAIN_EFFORT integer,
+	REMAIN_EFFORT_1 decimal(20,7)
+) 
+language SQLSCRIPT
+SQL SECURITY INVOKER AS
+BEGIN
+
+-- Inbound projection
+lt_tasks = SELECT * from :it_input;
+
+-- Calculate Remaining effort (Column REMAIN_EFFORT)
+lt_tasks_w_remain = SELECT *, PLANNED_EFFORT - EFFORT as REMAIN_EFFORT FROM :lt_tasks;
+
+-- Increase remaing effort (Column REMAIN_EFFORT_INC)
+lt_tasks_remain_inc = SELECT *, 
+					  REMAIN_EFFORT * (1 + :i_steigerung / 100 ) as REMAIN_EFFORT_1
+					  FROM :lt_tasks_w_remain;			 
+
+
+return SELECT ID,
+			 PROJECT,
+			 TITLE,
+			 STATUS,
+			 ASSIGNEE,
+			 DUE_DATE,
+			 EFFORT,
+			 PLANNED_EFFORT,
+			 REMAIN_EFFORT, 
+			 REMAIN_EFFORT_1 from :lt_tasks_remain_inc;
+
+END;
