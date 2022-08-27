@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="CV_C_TASKS_USERS_CALC_SOL" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Calculation View für Tabelle TASKS"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="TASKS">
+    <resourceUri>TASKS</resourceUri>
+  </DataSource>
+  <DataSource id="CV_DIM_USERS_TEAM_SOL">
+    <resourceUri>CV_DIM_USERS_TEAM_SOL</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="TASK"/>
+      <viewAttribute id="PROJECT"/>
+      <viewAttribute id="TITLE"/>
+      <viewAttribute id="DESCRIPTION"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="ASSIGNEE"/>
+      <viewAttribute id="PLANNED_EFFORT"/>
+      <viewAttribute id="EFFORT"/>
+      <viewAttribute id="CREATE_DATE"/>
+      <viewAttribute id="DUE_DATE"/>
+      <viewAttribute id="COMPLETED"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="IS_OVER_DUE" datatype="NVARCHAR" length="1" expressionLanguage="SQL">
+        <formula>CASE WHEN &quot;DUE_DATE&quot; &lt;= '10.01.2018' AND &quot;STATUS&quot; NOT IN (5,6)
+   THEN 'J' 
+   ELSE 'N' 
+END</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="TASKS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TASK" source="ID"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_TASKS_USERS" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="TASK" aggregationType="sum"/>
+      <viewAttribute id="PROJECT" aggregationType="sum"/>
+      <viewAttribute id="TITLE"/>
+      <viewAttribute id="DESCRIPTION"/>
+      <viewAttribute id="STATUS" aggregationType="sum"/>
+      <viewAttribute id="ASSIGNEE" aggregationType="sum"/>
+      <viewAttribute id="PLANNED_EFFORT" aggregationType="sum"/>
+      <viewAttribute id="EFFORT" aggregationType="sum"/>
+      <viewAttribute id="CREATE_DATE"/>
+      <viewAttribute id="DUE_DATE"/>
+      <viewAttribute id="COMPLETED" aggregationType="sum"/>
+      <viewAttribute id="USERID" aggregationType="sum"/>
+      <viewAttribute id="DISPLAY_NAME"/>
+      <viewAttribute id="TEAM" aggregationType="sum"/>
+      <viewAttribute id="TEAM_TEXT"/>
+    
+      <viewAttribute id="IS_OVER_DUE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TASK" source="TASK"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROJECT" source="PROJECT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TITLE" source="TITLE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSIGNEE" source="ASSIGNEE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PLANNED_EFFORT" source="PLANNED_EFFORT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EFFORT" source="EFFORT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DATE" source="CREATE_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DUE_DATE" source="DUE_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMPLETED" source="COMPLETED"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="IS_OVER_DUE" source="IS_OVER_DUE"/>
+    </input>
+    <input node="P_USERS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="USERID" source="USERID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DISPLAY_NAME" source="DISPLAY_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAM" source="TEAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAM_TEXT" source="TEAM_TEXT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSIGNEE" source="USERID"/>
+    </input>
+    <joinAttribute name="ASSIGNEE"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_USERS">
+    <viewAttributes>
+      <viewAttribute id="USERID"/>
+      <viewAttribute id="DISPLAY_NAME"/>
+      <viewAttribute id="TEAM"/>
+      <viewAttribute id="TEAM_TEXT"/>
+      <viewAttribute id="FIRSTNAME"/>
+      <viewAttribute id="LASTNAME"/>
+      <viewAttribute id="EMAIL"/>
+      <viewAttribute id="SEX"/>
+      <viewAttribute id="LANGU"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CV_DIM_USERS_TEAM_SOL"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="J_TASKS_USERS">
+  <attributes>
+    <attribute id="TASK" order="1" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Task ID"/>
+      <keyMapping columnObjectName="J_TASKS_USERS" columnName="TASK"/>
+    </attribute>
+    <attribute id="PROJECT" order="2" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Project ID"/>
+      <keyMapping columnObjectName="J_TASKS_USERS" columnName="PROJECT"/>
+    </attribute>
+    <attribute id="TITLE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Task Title"/>
+      <keyMapping columnObjectName="J_TASKS_USERS" columnName="TITLE"/>
+    </attribute>
+    <attribute id="STATUS" order="4" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STATUS"/>
+      <keyMapping columnObjectName="J_TASKS_USERS" columnName="STATUS"/>
+    </attribute>
+    <attribute id="ASSIGNEE" order="5" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ASSIGNEE"/>
+      <keyMapping columnObjectName="J_TASKS_USERS" columnName="ASSIGNEE"/>
+    </attribute>
+    <attribute id="CREATE_DATE" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CREATE_DATE"/>
+      <keyMapping columnObjectName="J_TASKS_USERS" columnName="CREATE_DATE"/>
+    </attribute>
+    <attribute id="DUE_DATE" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DUE_DATE"/>
+      <keyMapping columnObjectName="J_TASKS_USERS" columnName="DUE_DATE"/>
+    </attribute>
+  
+    <attribute id="USERID" order="11" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="USERID"/>
+  
+      <keyMapping columnObjectName="J_TASKS_USERS" columnName="USERID"/>
+  
+    </attribute>
+    <attribute id="DISPLAY_NAME" order="12" semanticType="empty" descriptionColumnName="DISPLAY_NAME" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DISPLAY_NAME"/>
+      <keyMapping columnObjectName="J_TASKS_USERS" columnName="DISPLAY_NAME"/>
+    </attribute>
+    <attribute id="TEAM" order="13" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TEAM"/>
+      <keyMapping columnObjectName="J_TASKS_USERS" columnName="TEAM"/>
+    </attribute>
+    <attribute id="TEAM_TEXT" order="14" semanticType="empty" descriptionColumnName="TEAM_TEXT" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TEAM_TEXT"/>
+      <keyMapping columnObjectName="J_TASKS_USERS" columnName="TEAM_TEXT"/>
+    </attribute>
+  
+    <attribute id="IS_OVER_DUE" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="IS_OVER_DUE"/>
+  
+      <keyMapping columnObjectName="J_TASKS_USERS" columnName="IS_OVER_DUE"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="PLANNED_EFFORT" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PLANNED_EFFORT"/>
+      <measureMapping columnObjectName="J_TASKS_USERS" columnName="PLANNED_EFFORT"/>
+    </measure>
+    <measure id="EFFORT" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="EFFORT"/>
+      <measureMapping columnObjectName="J_TASKS_USERS" columnName="EFFORT"/>
+    </measure>
+    <measure id="COMPLETED" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="COMPLETED"/>
+      <measureMapping columnObjectName="J_TASKS_USERS" columnName="COMPLETED"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="REMAIN_ESTIMATE" order="15" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="SQL">
+      <formula>&quot;PLANNED_EFFORT&quot; - &quot;EFFORT&quot;</formula>
+      </measure>
+    <measure id="COUNT_TASKS" order="16" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" aggregatable="true" datatype="BIGINT" length="">
+      <descriptions defaultDescription="COUNT_TASKS"/>
+      <exceptionAggregation>
+        <attribute attributeName="TASK"/>
+      </exceptionAggregation>
+      <formula>1</formula>
+      </measure>
+    <measure id="COUNT_ASSIGNEE" order="17" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" aggregatable="true" datatype="BIGINT" length="">
+      <descriptions defaultDescription="COUNT_ASSIGNEE"/>
+      <exceptionAggregation>
+        <attribute attributeName="ASSIGNEE"/>
+      </exceptionAggregation>
+      <formula>1</formula>
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures>
+    <measure id="EFFORT_PROCESS" order="19" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="EFFORT">
+      <descriptions defaultDescription=""/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="STATUS">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="3"/>
+        </filter>
+        <attributeName>STATUS</attributeName>
+      </restriction>
+    </measure>
+    <measure id="PLANNED_EFFORT_TWO_WEEKS" order="20" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="PLANNED_EFFORT" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;DUE_DATE&quot; &gt;= '01.01.2018' AND &quot;DUE_DATE&quot; &lt;= '15.01.2018'</restrictionExpression>
+    </measure>
+  </restrictedMeasures>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="259" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="J_TASKS_USERS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="259" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="J_TASKS_USERS" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="P_USERS" modelObjectNameSpace="J_TASKS_USERS" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="169"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_USERS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="356"/>
+      <rectangleSize height="30" width="252"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

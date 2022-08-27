@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_C_STAR_JOIN_TASKS_SOL" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Star Join mit Tasks, Users, Status"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="TASKS">
+    <resourceUri>TASKS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="TASKID"/>
+      <viewAttribute id="PROJECT"/>
+      <viewAttribute id="TITLE"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="ASSIGNEE"/>
+      <viewAttribute id="PLANNED_EFFORT"/>
+      <viewAttribute id="EFFORT"/>
+      <viewAttribute id="CREATE_DATE"/>
+      <viewAttribute id="DUE_DATE"/>
+      <viewAttribute id="COMPLETED"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TASKS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TASKID" source="ID"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="TASKID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Task ID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="TASKID"/>
+    </attribute>
+    <attribute id="PROJECT" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Project ID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="PROJECT"/>
+    </attribute>
+    <attribute id="TITLE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Task Title"/>
+      <keyMapping columnObjectName="Projection_1" columnName="TITLE"/>
+    </attribute>
+    <attribute id="CREATE_DATE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CREATE_DATE"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CREATE_DATE"/>
+    </attribute>
+    <attribute id="DUE_DATE" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DUE_DATE"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DUE_DATE"/>
+    </attribute>
+    <attribute id="STATUS$local">
+      <descriptions defaultDescription="STATUS"/>
+      <keyMapping columnObjectName="Projection_1" columnName="STATUS"/>
+    </attribute>
+    <attribute id="ASSIGNEE$local">
+      <descriptions defaultDescription="ASSIGNEE"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ASSIGNEE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="PLANNED_EFFORT" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PLANNED_EFFORT"/>
+      <measureMapping columnObjectName="Projection_1" columnName="PLANNED_EFFORT"/>
+    </measure>
+    <measure id="EFFORT" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="EFFORT"/>
+      <measureMapping columnObjectName="Projection_1" columnName="EFFORT"/>
+    </measure>
+    <measure id="COMPLETED" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="COMPLETED"/>
+      <measureMapping columnObjectName="Projection_1" columnName="COMPLETED"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+  <sharedDimensions>
+    <logicalJoin associatedObjectUri="CV_DIM_STATUS_TEXT_SOL">
+      <attributes>
+        <attributeRef>STATUS$local</attributeRef>
+      </attributes>
+      <associatedAttributeNames>
+        <attributeName>STATUSID</attributeName>
+      </associatedAttributeNames>
+      <properties cardinality="CN_1" joinType="referential" joinOperator="Equal"/>
+      <associatedAttributeFeatures/>
+    </logicalJoin>
+    <logicalJoin associatedObjectUri="CV_DIM_USERS_TEAM_SOL">
+      <attributes>
+        <attributeRef>ASSIGNEE$local</attributeRef>
+      </attributes>
+      <associatedAttributeNames>
+        <attributeName>USERID</attributeName>
+      </associatedAttributeNames>
+      <properties cardinality="CN_1" joinType="referential" joinOperator="Equal"/>
+      <associatedAttributeFeatures/>
+    </logicalJoin>
+  </sharedDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="CV_DIM_STATUS_TEXT_SOL" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="230.916015625"/>
+    </shape>
+    <shape modelObjectName="CV_DIM_USERS_TEAM_SOL" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="455" y="202"/>
+      <rectangleSize width="229.369140625"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

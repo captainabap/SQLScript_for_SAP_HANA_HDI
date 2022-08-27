@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_C_RANK_ASSIGN_DUE_DATE_SOL" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CV_C_RANK_01"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="TASKS">
+    <resourceUri>TASKS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="TASKID"/>
+      <viewAttribute id="PROJECT"/>
+      <viewAttribute id="TITLE"/>
+      <viewAttribute id="ASSIGNEE"/>
+      <viewAttribute id="PLANNED_EFFORT"/>
+      <viewAttribute id="EFFORT"/>
+      <viewAttribute id="DUE_DATE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TASKS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TASKID" source="ID"/>
+    </input>
+    <filter>&quot;DUE_DATE&quot; &gt;= '01.11.2017'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:RankView" id="Rank_1">
+    <viewAttributes>
+      <viewAttribute id="TASKID" aggregationType="sum"/>
+      <viewAttribute id="PROJECT" aggregationType="sum"/>
+      <viewAttribute id="TITLE"/>
+      <viewAttribute id="ASSIGNEE" aggregationType="sum"/>
+      <viewAttribute id="PLANNED_EFFORT" aggregationType="sum"/>
+      <viewAttribute id="EFFORT" aggregationType="sum"/>
+      <viewAttribute id="DUE_DATE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1"/>
+    <rankingFilter type="RANK" offset="0" offsetReference="FRONT" dynamicPartitionAttributes="false">
+      <partitionViewAttributeName id="ASSIGNEE"/>
+      <order byViewAttributeName="DUE_DATE" direction="ASC"/>
+      <rankThreshold>
+        <value>5</value>
+      </rankThreshold>
+      <rankViewAttributeName>Rank_Column</rankViewAttributeName>
+    </rankingFilter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Rank_1">
+  <attributes>
+    <attribute id="TASKID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Task ID"/>
+      <keyMapping columnObjectName="Rank_1" columnName="TASKID"/>
+    </attribute>
+    <attribute id="PROJECT" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Project ID"/>
+      <keyMapping columnObjectName="Rank_1" columnName="PROJECT"/>
+    </attribute>
+    <attribute id="TITLE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Task Title"/>
+      <keyMapping columnObjectName="Rank_1" columnName="TITLE"/>
+    </attribute>
+    <attribute id="ASSIGNEE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ASSIGNEE"/>
+      <keyMapping columnObjectName="Rank_1" columnName="ASSIGNEE"/>
+    </attribute>
+    <attribute id="DUE_DATE" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DUE_DATE"/>
+      <keyMapping columnObjectName="Rank_1" columnName="DUE_DATE"/>
+    </attribute>
+    <attribute id="Rank_Column" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Rank_Column"/>
+      <keyMapping columnObjectName="Rank_1" columnName="Rank_Column"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="PLANNED_EFFORT" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PLANNED_EFFORT"/>
+      <measureMapping columnObjectName="Rank_1" columnName="PLANNED_EFFORT"/>
+    </measure>
+    <measure id="EFFORT" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="EFFORT"/>
+      <measureMapping columnObjectName="Rank_1" columnName="EFFORT"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="322"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

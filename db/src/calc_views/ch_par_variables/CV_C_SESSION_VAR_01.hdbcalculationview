@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_C_SESSION_VAR_01" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CV_C_SESSION_VAR_01"/>
+<localVariables>
+  <variable id="XS_USER_NAME" type="session"/>
+  <variable id="MY_TEST" type="session"/>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="TASKS">
+    <resourceUri>TASKS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="PROJECT"/>
+      <viewAttribute id="TITLE"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="ASSIGNEE"/>
+      <viewAttribute id="PLANNED_EFFORT"/>
+      <viewAttribute id="EFFORT"/>
+      <viewAttribute id="CREATE_DATE"/>
+      <viewAttribute id="DUE_DATE"/>
+      <viewAttribute id="COMPLETED"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TASKS"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Task ID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ID"/>
+    </attribute>
+    <attribute id="PROJECT" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Project ID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="PROJECT"/>
+    </attribute>
+    <attribute id="TITLE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Task Title"/>
+      <keyMapping columnObjectName="Projection_1" columnName="TITLE"/>
+    </attribute>
+    <attribute id="STATUS" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STATUS"/>
+      <keyMapping columnObjectName="Projection_1" columnName="STATUS"/>
+    </attribute>
+    <attribute id="ASSIGNEE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ASSIGNEE"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ASSIGNEE"/>
+    </attribute>
+    <attribute id="CREATE_DATE" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CREATE_DATE"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CREATE_DATE"/>
+    </attribute>
+    <attribute id="DUE_DATE" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DUE_DATE"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DUE_DATE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="COL_SESSION_VARIABLE_USER" order="11" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="20">
+        <formula>'??XS_USER_NAME??'</formula>
+      </keyCalculation>
+      </calculatedAttribute>
+    <calculatedAttribute id="COL_SESSION_VAR_MY_TEST" order="12" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="20">
+        <formula>'??MY_TEST??'</formula>
+      </keyCalculation>
+      </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures>
+    <measure id="PLANNED_EFFORT" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PLANNED_EFFORT"/>
+      <measureMapping columnObjectName="Projection_1" columnName="PLANNED_EFFORT"/>
+    </measure>
+    <measure id="EFFORT" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="EFFORT"/>
+      <measureMapping columnObjectName="Projection_1" columnName="EFFORT"/>
+    </measure>
+    <measure id="COMPLETED" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="COMPLETED"/>
+      <measureMapping columnObjectName="Projection_1" columnName="COMPLETED"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -4,70 +4,150 @@
 <localVariables/>
 <variableMappings/>
 <dataSources>
-  <DataSource id="USERS_TD">
-    <resourceUri>USERS_TD</resourceUri>
-  </DataSource>
   <DataSource id="TASKS">
     <resourceUri>TASKS</resourceUri>
   </DataSource>
+  <DataSource id="USERS_TD">
+    <resourceUri>USERS_TD</resourceUri>
+  </DataSource>
 </dataSources>
 <calculationViews>
-  <calculationView xsi:type="Calculation:NonEquiJoinView" id="NonEquiJoin_1" cardinality="C1_N" joinType="inner">
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="TASKID"/>
+      <viewAttribute id="DUE_DATE"/>
+      <viewAttribute id="ASSIGNEE"/>
+      <viewAttribute id="PROJECT"/>
+      <viewAttribute id="TITLE"/>
+      <viewAttribute id="DESCRIPTION"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="PLANNED_EFFORT"/>
+      <viewAttribute id="EFFORT"/>
+      <viewAttribute id="CREATE_DATE"/>
+      <viewAttribute id="COMPLETED"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TASKS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TASKID" source="ID"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
     <viewAttributes>
       <viewAttribute id="USERID"/>
       <viewAttribute id="DATEFROM"/>
       <viewAttribute id="DATETO"/>
       <viewAttribute id="TEAM"/>
-      <viewAttribute id="TASKID"/>
-      <viewAttribute id="DUE_DATE"/>
-      <viewAttribute id="ASSIGNEE"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="USERS_TD">
       <mapping xsi:type="Calculation:AttributeMapping" target="USERID" source="ID"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:NonEquiJoinView" id="NonEquiJoin_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="TASKID"/>
+      <viewAttribute id="DUE_DATE"/>
+      <viewAttribute id="ASSIGNEE"/>
+      <viewAttribute id="PROJECT"/>
+      <viewAttribute id="TITLE"/>
+      <viewAttribute id="DESCRIPTION"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="PLANNED_EFFORT"/>
+      <viewAttribute id="EFFORT"/>
+      <viewAttribute id="CREATE_DATE"/>
+      <viewAttribute id="COMPLETED"/>
+      <viewAttribute id="USERID"/>
+      <viewAttribute id="DATEFROM"/>
+      <viewAttribute id="DATETO"/>
+      <viewAttribute id="TEAM"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TASKID" source="TASKID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DUE_DATE" source="DUE_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSIGNEE" source="ASSIGNEE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROJECT" source="PROJECT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TITLE" source="TITLE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PLANNED_EFFORT" source="PLANNED_EFFORT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EFFORT" source="EFFORT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DATE" source="CREATE_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMPLETED" source="COMPLETED"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="USERID" source="USERID"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="DATEFROM" source="DATEFROM"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="DATETO" source="DATETO"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="TEAM" source="TEAM"/>
     </input>
-    <input node="TASKS">
-      <mapping xsi:type="Calculation:AttributeMapping" target="TASKID" source="ID"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="DUE_DATE" source="DUE_DATE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ASSIGNEE" source="ASSIGNEE"/>
-    </input>
-    <joinAttribute leftColumn="DATEFROM" rightColumn="DUE_DATE" operator="LE"/>
-    <joinAttribute leftColumn="ID" rightColumn="ASSIGNEE" operator="EQ"/>
-    <joinAttribute leftColumn="DATETO" rightColumn="DUE_DATE" operator="GE"/>
+    <joinAttribute leftColumn="ASSIGNEE" rightColumn="USERID" operator="EQ"/>
+    <joinExpression>&quot;Projection_1&quot;.&quot;ASSIGNEE&quot;=&quot;Projection_2&quot;.&quot;USERID&quot; and 
+&quot;Projection_1&quot;.&quot;DUE_DATE&quot;&gt;=&quot;Projection_2&quot;.&quot;DATEFROM&quot; and 
+&quot;Projection_1&quot;.&quot;DUE_DATE&quot;&lt;=&quot;Projection_2&quot;.&quot;DATETO&quot;</joinExpression>
   </calculationView>
 </calculationViews>
 <logicalModel id="NonEquiJoin_1">
   <attributes>
-    <attribute id="USERID" order="1" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="ID"/>
-      <keyMapping columnObjectName="NonEquiJoin_1" columnName="USERID"/>
-    </attribute>
-    <attribute id="DATEFROM" order="2" semanticType="date.businessDateFrom" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="DATEFROM"/>
-      <keyMapping columnObjectName="NonEquiJoin_1" columnName="DATEFROM"/>
-    </attribute>
-    <attribute id="DATETO" order="3" semanticType="date.businessDateTo" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="DATETO"/>
-      <keyMapping columnObjectName="NonEquiJoin_1" columnName="DATETO"/>
-    </attribute>
-    <attribute id="TEAM" order="4" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="TEAM"/>
-      <keyMapping columnObjectName="NonEquiJoin_1" columnName="TEAM"/>
-    </attribute>
-    <attribute id="TASKID" order="5" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="TASKID" order="1" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Task ID"/>
       <keyMapping columnObjectName="NonEquiJoin_1" columnName="TASKID"/>
     </attribute>
-    <attribute id="DUE_DATE" order="6" semanticType="date" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="DUE_DATE" order="2" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="DUE_DATE"/>
       <keyMapping columnObjectName="NonEquiJoin_1" columnName="DUE_DATE"/>
     </attribute>
-    <attribute id="ASSIGNEE" order="7" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ASSIGNEE" order="3" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ASSIGNEE"/>
       <keyMapping columnObjectName="NonEquiJoin_1" columnName="ASSIGNEE"/>
+    </attribute>
+    <attribute id="PROJECT" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Project ID"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="PROJECT"/>
+    </attribute>
+    <attribute id="TITLE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Task Title"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="TITLE"/>
+    </attribute>
+    <attribute id="DESCRIPTION" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Task description"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="DESCRIPTION"/>
+    </attribute>
+    <attribute id="STATUS" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STATUS"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="STATUS"/>
+    </attribute>
+    <attribute id="PLANNED_EFFORT" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PLANNED_EFFORT"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="PLANNED_EFFORT"/>
+    </attribute>
+    <attribute id="EFFORT" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EFFORT"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="EFFORT"/>
+    </attribute>
+    <attribute id="CREATE_DATE" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CREATE_DATE"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="CREATE_DATE"/>
+    </attribute>
+    <attribute id="COMPLETED" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COMPLETED"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="COMPLETED"/>
+    </attribute>
+    <attribute id="USERID" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="USERID"/>
+    </attribute>
+    <attribute id="DATEFROM" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DATEFROM"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="DATEFROM"/>
+    </attribute>
+    <attribute id="DATETO" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DATETO"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="DATETO"/>
+    </attribute>
+    <attribute id="TEAM" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TEAM"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="TEAM"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
@@ -80,18 +160,25 @@
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
       <upperLeftCorner x="40" y="85"/>
     </shape>
-  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-100" y="318"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="215" y="308"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
     <shape expanded="true" modelObjectName="NonEquiJoin_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="90" y="230"/>
-      <rectangleSize height="30" width="201"/>
+      <upperLeftCorner x="65" y="178"/>
+      <rectangleSize height="30" width="160"/>
     </shape>
-    <shape modelObjectName="USERS_TD" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="32" y="27"/>
-      <rectangleSize width="141"/>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="187.87353515625"/>
     </shape>
-    <shape modelObjectName="TASKS" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="178"/>
+      <rectangleSize width="146.90283203125"/>
     </shape>
   </shapes>
 </layout>

@@ -1,0 +1,5 @@
+column table cluster_result_01(
+	id INT PRIMARY KEY,
+	assigned_cluster integer,
+	distance double
+)

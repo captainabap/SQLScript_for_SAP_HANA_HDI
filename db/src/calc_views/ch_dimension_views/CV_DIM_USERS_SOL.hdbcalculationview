@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_DIM_USERS_SOL" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
-<descriptions defaultDescription="Dimension view USERS"/>
+<descriptions defaultDescription="Dimension View Users"/>
 <localVariables/>
 <variableMappings/>
 <dataSources>
@@ -9,7 +9,7 @@
   </DataSource>
 </dataSources>
 <calculationViews>
-  <calculationView xsi:type="Calculation:ProjectionView" id="P_USERS" filterExpressionLanguage="SQL">
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_USERS">
     <viewAttributes>
       <viewAttribute id="USERID"/>
       <viewAttribute id="FIRSTNAME"/>
@@ -19,43 +19,44 @@
       <viewAttribute id="TEAM"/>
     </viewAttributes>
     <calculatedViewAttributes>
-      <calculatedViewAttribute id="DISPLAY_NAME" datatype="NVARCHAR" length="41" expressionLanguage="SQL">
+      <calculatedViewAttribute id="DISPLAY_NAME" datatype="NVARCHAR" length="50" expressionLanguage="SQL">
         <formula>&quot;FIRSTNAME&quot; || ' ' || &quot;LASTNAME&quot;</formula>
       </calculatedViewAttribute>
     </calculatedViewAttributes>
     <input node="USERS">
       <mapping xsi:type="Calculation:AttributeMapping" target="USERID" source="ID"/>
-    </input></calculationView>
+    </input>
+  </calculationView>
 </calculationViews>
 <logicalModel id="P_USERS">
   <attributes>
-    <attribute id="USERID" key="true" order="1" descriptionColumnName="DISPLAY_NAME" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="USERID" order="1" descriptionColumnName="DISPLAY_NAME" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ID"/>
       <keyMapping columnObjectName="P_USERS" columnName="USERID"/>
     </attribute>
-    <attribute id="DISPLAY_NAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="DISPLAY_NAME"/>
-      <keyMapping columnObjectName="P_USERS" columnName="DISPLAY_NAME"/>
-    </attribute>
-    <attribute id="FIRSTNAME" order="3" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="FIRSTNAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="FIRSTNAME"/>
       <keyMapping columnObjectName="P_USERS" columnName="FIRSTNAME"/>
     </attribute>
-    <attribute id="LASTNAME" order="4" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="LASTNAME" order="3" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="LASTNAME"/>
       <keyMapping columnObjectName="P_USERS" columnName="LASTNAME"/>
     </attribute>
-    <attribute id="EMAIL" order="5" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EMAIL" order="4" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EMAIL"/>
       <keyMapping columnObjectName="P_USERS" columnName="EMAIL"/>
     </attribute>
-    <attribute id="SEX" order="6" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="SEX" order="5" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="SEX"/>
       <keyMapping columnObjectName="P_USERS" columnName="SEX"/>
     </attribute>
-    <attribute id="TEAM" order="7" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="TEAM" order="6" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="TEAM"/>
       <keyMapping columnObjectName="P_USERS" columnName="TEAM"/>
+    </attribute>
+    <attribute id="DISPLAY_NAME" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DISPLAY_NAME"/>
+      <keyMapping columnObjectName="P_USERS" columnName="DISPLAY_NAME"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
@@ -70,7 +71,7 @@
     </shape>
   
     <shape expanded="true" modelObjectName="P_USERS" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="100" y="225"/>
+      <upperLeftCorner x="100" y="188"/>
       <rectangleSize height="30" width="160"/>
     </shape>
   </shapes>

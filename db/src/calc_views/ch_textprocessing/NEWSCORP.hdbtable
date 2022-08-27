@@ -1,0 +1,5 @@
+column table "NEWSCORP"(
+	key INT PRIMARY KEY comment 'Document ID',
+	category NVARCHAR(20) comment 'Category',
+	text CLOB comment 'Document content'
+)

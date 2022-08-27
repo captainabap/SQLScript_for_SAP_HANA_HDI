@@ -31,14 +31,14 @@
     </input></calculationView>
   <calculationView xsi:type="Calculation:ProjectionView" id="P_TEAM_TEXT">
     <viewAttributes>
-      <viewAttribute id="TEAM_ID"/>
+      <viewAttribute id="TEAMID"/>
       <viewAttribute id="LANGU"/>
       <viewAttribute id="SPRAS"/>
       <viewAttribute id="TEAM_TEXT"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="TEAM_TEXT">
-      <mapping xsi:type="Calculation:AttributeMapping" target="TEAM_ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMID" source="ID"/>
     </input>
   </calculationView>
   <calculationView xsi:type="Calculation:JoinView" id="J_USERS_TEAM_TEXT" cardinality="C1_1" joinType="textTable" languageColumn="SPRAS">
@@ -66,7 +66,7 @@
     <input node="P_TEAM_TEXT">
       <mapping xsi:type="Calculation:AttributeMapping" target="LANGU" source="LANGU"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="TEAM_TEXT" source="TEAM_TEXT"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="TEAM" source="TEAM_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAM" source="TEAMID"/>
     </input>
     <joinAttribute name="TEAM"/>
   </calculationView>
@@ -118,22 +118,22 @@
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="208" y="112"/>
+      <upperLeftCorner x="208.19346468301873" y="112"/>
     
       <rectangleSize width="220"/>
     </shape>
   
     <shape expanded="true" modelObjectName="P_USERS" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="91" y="376"/>
+      <upperLeftCorner x="91.99999999999999" y="376.9999988079071"/>
       <rectangleSize height="30" width="160"/>
     </shape>
   
     <shape expanded="true" modelObjectName="P_TEAM_TEXT" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="301" y="376"/>
+      <upperLeftCorner x="301.99999999999994" y="376.9999988079071"/>
       <rectangleSize height="30" width="203"/>
     </shape>
     <shape expanded="true" modelObjectName="J_USERS_TEAM_TEXT" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="178" y="217"/>
+      <upperLeftCorner x="178.69346468301873" y="217"/>
       <rectangleSize height="30" width="279"/>
     </shape>
     <shape modelObjectName="P_USERS" modelObjectNameSpace="J_USERS_TEAM_TEXT" modelObjectType="JoinNodeInput">

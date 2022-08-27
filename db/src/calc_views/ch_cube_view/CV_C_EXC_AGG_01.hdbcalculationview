@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_C_EXC_AGG_01" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Calculation View mit Ausnahmeaggregation"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="TASKS">
+    <resourceUri>TASKS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:AggregationView" id="A_SUM_KEEP">
+    <viewAttributes>
+      <viewAttribute id="TASKID"/>
+      <viewAttribute id="PROJECT"/>
+      <viewAttribute id="TITLE"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="ASSIGNEE"/>
+      <viewAttribute id="PLANNED_EFFORT" aggregationType="sum"/>
+      <viewAttribute keepFlag="true" id="DUE_DATE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="P_TASKS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_TASKS">
+    <viewAttributes>
+      <viewAttribute id="TASKID"/>
+      <viewAttribute id="PROJECT"/>
+      <viewAttribute id="TITLE"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="ASSIGNEE"/>
+      <viewAttribute id="PLANNED_EFFORT"/>
+      <viewAttribute id="DUE_DATE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TASKS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TASKID" source="ID"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="A_SUM_KEEP">
+  <attributes>
+    <attribute id="TASKID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Task ID"/>
+      <keyMapping columnObjectName="A_SUM_KEEP" columnName="TASKID"/>
+    </attribute>
+    <attribute id="PROJECT" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Project ID"/>
+      <keyMapping columnObjectName="A_SUM_KEEP" columnName="PROJECT"/>
+    </attribute>
+    <attribute id="TITLE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Task Title"/>
+      <keyMapping columnObjectName="A_SUM_KEEP" columnName="TITLE"/>
+    </attribute>
+    <attribute id="STATUS" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STATUS"/>
+      <keyMapping columnObjectName="A_SUM_KEEP" columnName="STATUS"/>
+    </attribute>
+    <attribute id="ASSIGNEE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ASSIGNEE"/>
+      <keyMapping columnObjectName="A_SUM_KEEP" columnName="ASSIGNEE"/>
+    </attribute>
+    <attribute id="DUE_DATE" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DUE_DATE"/>
+      <keyMapping columnObjectName="A_SUM_KEEP" columnName="DUE_DATE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="PLANNED_EFFORT" order="6" aggregationType="max" measureType="simple">
+      <descriptions defaultDescription="PLANNED_EFFORT"/>
+      <measureMapping columnObjectName="A_SUM_KEEP" columnName="PLANNED_EFFORT"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="A_SUM_KEEP" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-19" y="211"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_TASKS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="322"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

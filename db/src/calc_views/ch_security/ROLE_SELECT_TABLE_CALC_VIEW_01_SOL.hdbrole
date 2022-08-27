@@ -1,0 +1,28 @@
+{
+  "role": {
+    "name": "ROLE_SELECT_TABLE_CALC_VIEW_01_SOL",
+    "object_privileges": [
+      {
+        "name": "TASKS",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "USERS",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "CV_C_TASKS_USERS_SOL",
+        "type": "VIEW",
+        "privileges": [
+          "SELECT"
+        ]
+      }
+    ]
+  }
+}
