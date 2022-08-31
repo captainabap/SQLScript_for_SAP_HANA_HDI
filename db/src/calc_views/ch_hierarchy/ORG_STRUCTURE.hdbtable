@@ -1,0 +1,5 @@
+column table ORG_STRUCTURE(
+	ORG_ID INT primary key, 
+	PARENT_ID INT, 
+	JOB_TITLE VARCHAR(50)
+)

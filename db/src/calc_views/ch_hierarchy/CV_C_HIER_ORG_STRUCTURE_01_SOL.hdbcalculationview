@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_C_HIER_ORG_STRUCTURE_01_SOL" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Create hierarchy for org structure"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="ORG_STRUCTURE">
+    <resourceUri>ORG_STRUCTURE</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:HierarchyView" id="Hierarchy_1" function="HIERARCHY">
+    <viewAttributes>
+      <viewAttribute datatype="INTEGER" id="ORG_ID" aggregationType="sum"/>
+      <viewAttribute datatype="INTEGER" id="PARENT_ID" aggregationType="sum"/>
+      <viewAttribute datatype="VARCHAR" length="50" id="JOB_TITLE"/>
+      <viewAttribute datatype="BIGINT" id="HIERARCHY_RANK"/>
+      <viewAttribute datatype="BIGINT" id="HIERARCHY_TREE_SIZE"/>
+      <viewAttribute datatype="BIGINT" id="HIERARCHY_PARENT_RANK"/>
+      <viewAttribute datatype="INTEGER" id="HIERARCHY_LEVEL"/>
+      <viewAttribute datatype="TINYINT" id="HIERARCHY_IS_CYCLE"/>
+      <viewAttribute datatype="TINYINT" id="HIERARCHY_IS_ORPHAN"/>
+      <viewAttribute datatype="INTEGER" id="NODE_ID" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="ORG_STRUCTURE">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORG_ID" source="ORG_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PARENT_ID" source="PARENT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOB_TITLE" source="JOB_TITLE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NODE_ID" source="ORG_ID"/>
+    </input>
+    <hierarchyParameterization/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Hierarchy_1">
+  <attributes>
+    <attribute id="ORG_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORG_ID"/>
+      <keyMapping columnObjectName="Hierarchy_1" columnName="ORG_ID"/>
+    </attribute>
+    <attribute id="PARENT_ID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARENT_ID"/>
+      <keyMapping columnObjectName="Hierarchy_1" columnName="PARENT_ID"/>
+    </attribute>
+    <attribute id="JOB_TITLE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="JOB_TITLE"/>
+      <keyMapping columnObjectName="Hierarchy_1" columnName="JOB_TITLE"/>
+    </attribute>
+    <attribute id="HIERARCHY_RANK" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HIERARCHY_RANK"/>
+      <keyMapping columnObjectName="Hierarchy_1" columnName="HIERARCHY_RANK"/>
+    </attribute>
+    <attribute id="HIERARCHY_TREE_SIZE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HIERARCHY_TREE_SIZE"/>
+      <keyMapping columnObjectName="Hierarchy_1" columnName="HIERARCHY_TREE_SIZE"/>
+    </attribute>
+    <attribute id="HIERARCHY_PARENT_RANK" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HIERARCHY_PARENT_RANK"/>
+      <keyMapping columnObjectName="Hierarchy_1" columnName="HIERARCHY_PARENT_RANK"/>
+    </attribute>
+    <attribute id="HIERARCHY_LEVEL" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HIERARCHY_LEVEL"/>
+      <keyMapping columnObjectName="Hierarchy_1" columnName="HIERARCHY_LEVEL"/>
+    </attribute>
+    <attribute id="HIERARCHY_IS_CYCLE" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HIERARCHY_IS_CYCLE"/>
+      <keyMapping columnObjectName="Hierarchy_1" columnName="HIERARCHY_IS_CYCLE"/>
+    </attribute>
+    <attribute id="HIERARCHY_IS_ORPHAN" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HIERARCHY_IS_ORPHAN"/>
+      <keyMapping columnObjectName="Hierarchy_1" columnName="HIERARCHY_IS_ORPHAN"/>
+    </attribute>
+    <attribute id="NODE_ID" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NODE_ID"/>
+      <keyMapping columnObjectName="Hierarchy_1" columnName="NODE_ID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures>
+    <measure id="COUNT_NODE" order="11" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" aggregatable="true" datatype="BIGINT" length="">
+      <descriptions defaultDescription="COUNT_NODE"/>
+      <exceptionAggregation>
+        <attribute attributeName="ORG_ID"/>
+      </exceptionAggregation>
+      <formula>1</formula>
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Hierarchy_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="62" y="222"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

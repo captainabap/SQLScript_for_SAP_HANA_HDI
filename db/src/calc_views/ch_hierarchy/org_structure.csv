@@ -1,0 +1,20 @@
+ORG_ID,PARENT_ID,JOB_TITLE
+1,0,CEO
+2,1,EA
+3,1,COO
+4,1,CHRO
+5,1,CFO
+6,1,CMO
+7,3,SVP Sales
+8,5,SVP Finance
+9,6,SVP Marketing
+10,7,US Sales
+11,7,EMEA Sales
+12,7,APJ Sales
+13,9,Global Marketing
+14,9,Regional Marketing
+15,11,UK Sales
+16,11,France Sales
+17,11,Germany Sales
+18,12,China Sales
+19,12,Australia Sales
