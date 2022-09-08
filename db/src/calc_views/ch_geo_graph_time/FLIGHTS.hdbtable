@@ -1,0 +1,6 @@
+COLUMN TABLE flights(
+	key int primary key,
+	airport_start_icao nvarchar(4) not null,
+	airport_end_icao nvarchar(4) not null,
+	flight_time int comment 'Flugzeit in Minuten',
+	flight_number nvarchar(10) comment 'Flugnummer')

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_D_AIRPORT" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Flughäfen mit Koordinaten"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="AIRPORT">
+    <resourceUri>AIRPORT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="OBJECTID"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="ICAO_CODE"/>
+      <viewAttribute id="TYP"/>
+      <viewAttribute id="ARS"/>
+      <viewAttribute id="BUNDESLAND"/>
+      <viewAttribute id="REGBEZIRK"/>
+      <viewAttribute id="KREIS"/>
+      <viewAttribute id="VERWALTUNG"/>
+      <viewAttribute id="GEMEINDE"/>
+      <viewAttribute id="SHAPE_JSON"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="GEO" datatype="ST_GEOMETRY" expressionLanguage="SQL">
+        <formula>ST_GeomFromGeoJSON(&quot;SHAPE_JSON&quot;,4326)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="AIRPORT"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="OBJECTID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Object id"/>
+      <keyMapping columnObjectName="Projection_1" columnName="OBJECTID"/>
+    </attribute>
+    <attribute id="NAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Name"/>
+      <keyMapping columnObjectName="Projection_1" columnName="NAME"/>
+    </attribute>
+    <attribute id="ICAO_CODE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ICAO-Code"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ICAO_CODE"/>
+    </attribute>
+    <attribute id="TYP" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TYP"/>
+      <keyMapping columnObjectName="Projection_1" columnName="TYP"/>
+    </attribute>
+    <attribute id="ARS" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ARS"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ARS"/>
+    </attribute>
+    <attribute id="BUNDESLAND" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BUNDESLAND"/>
+      <keyMapping columnObjectName="Projection_1" columnName="BUNDESLAND"/>
+    </attribute>
+    <attribute id="REGBEZIRK" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REGBEZIRK"/>
+      <keyMapping columnObjectName="Projection_1" columnName="REGBEZIRK"/>
+    </attribute>
+    <attribute id="KREIS" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="KREIS"/>
+      <keyMapping columnObjectName="Projection_1" columnName="KREIS"/>
+    </attribute>
+    <attribute id="VERWALTUNG" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VERWALTUNG"/>
+      <keyMapping columnObjectName="Projection_1" columnName="VERWALTUNG"/>
+    </attribute>
+    <attribute id="GEMEINDE" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GEMEINDE"/>
+      <keyMapping columnObjectName="Projection_1" columnName="GEMEINDE"/>
+    </attribute>
+    <attribute id="SHAPE_JSON" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Koordinaten als JSON"/>
+      <keyMapping columnObjectName="Projection_1" columnName="SHAPE_JSON"/>
+    </attribute>
+    <attribute id="GEO" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GEO"/>
+      <keyMapping columnObjectName="Projection_1" columnName="GEO"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="GEO_X" order="13" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="DOUBLE" expressionLanguage="SQL">
+        <formula>st_X(&quot;GEO&quot;)</formula>
+      </keyCalculation>
+      </calculatedAttribute>
+    <calculatedAttribute id="GEO_Y" order="14" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="DOUBLE" expressionLanguage="SQL">
+        <formula>st_Y(&quot;GEO&quot;)</formula>
+      </keyCalculation>
+      </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

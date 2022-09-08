@@ -1,0 +1,28 @@
+{
+	"format_version": 1,
+	"imports": [{
+		"target_table": "AIRPORT",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "AIRPORT.csv",
+			"has_header": true,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ";"
+			}
+		} 
+	},
+	{
+		"target_table": "FLIGHTS",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "FLIGHTS.csv",
+			"has_header": true,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		} 
+	}
+	]
+}	

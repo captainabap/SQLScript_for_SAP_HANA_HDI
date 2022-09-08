@@ -1,0 +1,13 @@
+column table "AIRPORT"(
+	objectid INT PRIMARY KEY comment 'Object id',
+	name nvarchar(50) comment 'Name',
+	icao_code nvarchar(4) unique not null comment 'ICAO-Code',
+	typ nvarchar(20),
+	ars nvarchar(20),
+	bundesland nvarchar(50),
+	regbezirk nvarchar(50),
+	kreis nvarchar(50),
+	verwaltung nvarchar(50),
+	gemeinde nvarchar(50),
+	SHAPE_JSON nvarchar(5000) comment 'Koordinaten als JSON'
+)

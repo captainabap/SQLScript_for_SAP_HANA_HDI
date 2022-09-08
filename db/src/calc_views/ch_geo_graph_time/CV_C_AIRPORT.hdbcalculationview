@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_C_AIRPORT" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CV_C_AIRPORT"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CV_D_AIRPORT">
+    <resourceUri>CV_D_AIRPORT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="OBJECTID"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="BUNDESLAND"/>
+      <viewAttribute id="ICAO_CODE"/>
+      <viewAttribute id="TYP"/>
+      <viewAttribute id="GEO"/>
+      <viewAttribute id="GEO_X"/>
+      <viewAttribute id="GEO_Y"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CV_D_AIRPORT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:RankView" id="Rank_1">
+    <viewAttributes>
+      <viewAttribute id="OBJECTID" aggregationType="sum"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="ICAO_CODE"/>
+      <viewAttribute id="BUNDESLAND"/>
+      <viewAttribute id="TYP"/>
+      <viewAttribute id="GEO"/>
+      <viewAttribute id="GEO_X" aggregationType="sum"/>
+      <viewAttribute id="GEO_Y" aggregationType="sum"/>
+      <viewAttribute id="POI_MY_LOCATION"/>
+      <viewAttribute id="DISTANCE" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="P_CALC_DISTANCE"/>
+    <rankingFilter type="RANK" offset="0" offsetReference="FRONT" dynamicPartitionAttributes="false">
+      <order byViewAttributeName="DISTANCE" direction="ASC"/>
+      <rankThreshold>
+        <value>10</value>
+      </rankThreshold>
+      <rankViewAttributeName>Rank_Column</rankViewAttributeName>
+    </rankingFilter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_CALC_DISTANCE">
+    <viewAttributes>
+      <viewAttribute id="OBJECTID"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="ICAO_CODE"/>
+      <viewAttribute id="BUNDESLAND"/>
+      <viewAttribute id="TYP"/>
+      <viewAttribute id="GEO"/>
+      <viewAttribute id="GEO_X"/>
+      <viewAttribute id="GEO_Y"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="POI_MY_LOCATION" datatype="ST_GEOMETRY" expressionLanguage="SQL">
+        <formula>ST_Point('Point(8.27 50.00)',4326)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="DISTANCE" datatype="DOUBLE" expressionLanguage="SQL">
+        <formula>ST_Distance(&quot;GEO&quot;, &quot;POI_MY_LOCATION&quot;, 'meter')</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Projection_1"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Rank_1">
+  <attributes>
+    <attribute id="OBJECTID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Object id"/>
+      <keyMapping columnObjectName="Rank_1" columnName="OBJECTID"/>
+    </attribute>
+    <attribute id="NAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Name"/>
+      <keyMapping columnObjectName="Rank_1" columnName="NAME"/>
+    </attribute>
+    <attribute id="ICAO_CODE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ICAO-Code"/>
+      <keyMapping columnObjectName="Rank_1" columnName="ICAO_CODE"/>
+    </attribute>
+    <attribute id="BUNDESLAND" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BUNDESLAND"/>
+      <keyMapping columnObjectName="Rank_1" columnName="BUNDESLAND"/>
+    </attribute>
+    <attribute id="TYP" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TYP"/>
+      <keyMapping columnObjectName="Rank_1" columnName="TYP"/>
+    </attribute>
+    <attribute id="GEO" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GEO"/>
+      <keyMapping columnObjectName="Rank_1" columnName="GEO"/>
+    </attribute>
+    <attribute id="POI_MY_LOCATION" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="POI_MY_LOCATION"/>
+      <keyMapping columnObjectName="Rank_1" columnName="POI_MY_LOCATION"/>
+    </attribute>
+    <attribute id="Rank_Column" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Rank_Column"/>
+      <keyMapping columnObjectName="Rank_1" columnName="Rank_Column"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="GEO_X" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="GEO_X"/>
+      <measureMapping columnObjectName="Rank_1" columnName="GEO_X"/>
+    </measure>
+    <measure id="GEO_Y" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="GEO_Y"/>
+      <measureMapping columnObjectName="Rank_1" columnName="GEO_Y"/>
+    </measure>
+    <measure id="DISTANCE" order="10" aggregationType="min" measureType="simple">
+      <descriptions defaultDescription="DISTANCE"/>
+      <measureMapping columnObjectName="Rank_1" columnName="DISTANCE"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="427"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_CALC_DISTANCE" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="322"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

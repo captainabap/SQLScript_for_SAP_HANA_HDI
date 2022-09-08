@@ -1,0 +1,7 @@
+graph workspace "flights"
+edge table flights
+source column airport_start_icao
+target column airport_end_icao
+key column key
+vertex table airport
+key column icao_code

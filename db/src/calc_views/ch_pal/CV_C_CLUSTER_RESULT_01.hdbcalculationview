@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_C_CLUSTER_RESULT_01" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Auswerten des Cluster-Ergebnis"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CLUSTER_RESULT_01">
+    <resourceUri>CLUSTER_RESULT_01</resourceUri>
+  </DataSource>
+  <DataSource id="CHURN">
+    <resourceUri>CHURN</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="ASSIGNED_CLUSTER"/>
+      <viewAttribute id="DISTANCE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CLUSTER_RESULT_01"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="ID" aggregationType="sum"/>
+      <viewAttribute id="ASSIGNED_CLUSTER" aggregationType="sum"/>
+      <viewAttribute id="DISTANCE" aggregationType="sum"/>
+      <viewAttribute id="SURNAME"/>
+      <viewAttribute id="CREDITSCORE" aggregationType="sum"/>
+      <viewAttribute id="GEOGRAPHY"/>
+      <viewAttribute id="GENDER"/>
+      <viewAttribute id="AGE" aggregationType="sum"/>
+      <viewAttribute id="TENURE" aggregationType="sum"/>
+      <viewAttribute id="BALANCE" aggregationType="sum"/>
+      <viewAttribute id="NUMOFPRODUCTS" aggregationType="sum"/>
+      <viewAttribute id="HASCRCARD" aggregationType="sum"/>
+      <viewAttribute id="ISACTIVEMEMBER" aggregationType="sum"/>
+      <viewAttribute id="ESTIMATEDSALARY" aggregationType="sum"/>
+      <viewAttribute id="EXITED" aggregationType="sum"/>
+    
+      <viewAttribute id="CUSTOMERID" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSIGNED_CLUSTER" source="ASSIGNED_CLUSTER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DISTANCE" source="DISTANCE"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SURNAME" source="SURNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREDITSCORE" source="CREDITSCORE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GEOGRAPHY" source="GEOGRAPHY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GENDER" source="GENDER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AGE" source="AGE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TENURE" source="TENURE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BALANCE" source="BALANCE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NUMOFPRODUCTS" source="NUMOFPRODUCTS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HASCRCARD" source="HASCRCARD"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ISACTIVEMEMBER" source="ISACTIVEMEMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ESTIMATEDSALARY" source="ESTIMATEDSALARY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EXITED" source="EXITED"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMERID" source="CUSTOMERID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="CUSTOMERID"/>
+    </input>
+    <joinAttribute name="ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="SURNAME"/>
+      <viewAttribute id="CREDITSCORE"/>
+      <viewAttribute id="GEOGRAPHY"/>
+      <viewAttribute id="GENDER"/>
+      <viewAttribute id="AGE"/>
+      <viewAttribute id="TENURE"/>
+      <viewAttribute id="BALANCE"/>
+      <viewAttribute id="NUMOFPRODUCTS"/>
+      <viewAttribute id="HASCRCARD"/>
+      <viewAttribute id="ISACTIVEMEMBER"/>
+      <viewAttribute id="ESTIMATEDSALARY"/>
+      <viewAttribute id="EXITED"/>
+    
+      <viewAttribute id="CUSTOMERID"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CHURN"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="CUSTOMERID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUSTOMERID"/>
+      <keyMapping columnObjectName="Join_1" columnName="CUSTOMERID"/>
+    </attribute>
+    <attribute id="ASSIGNED_CLUSTER" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ASSIGNED_CLUSTER"/>
+      <keyMapping columnObjectName="Join_1" columnName="ASSIGNED_CLUSTER"/>
+    </attribute>
+    <attribute id="DISTANCE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DISTANCE"/>
+      <keyMapping columnObjectName="Join_1" columnName="DISTANCE"/>
+    </attribute>
+    <attribute id="SURNAME" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription=" "/>
+      <keyMapping columnObjectName="Join_1" columnName="SURNAME"/>
+    </attribute>
+    <attribute id="GEOGRAPHY" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription=" "/>
+      <keyMapping columnObjectName="Join_1" columnName="GEOGRAPHY"/>
+    </attribute>
+    <attribute id="GENDER" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription=" "/>
+      <keyMapping columnObjectName="Join_1" columnName="GENDER"/>
+    </attribute>
+    <attribute id="NUMOFPRODUCTS" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription=" "/>
+      <keyMapping columnObjectName="Join_1" columnName="NUMOFPRODUCTS"/>
+    </attribute>
+    <attribute id="HASCRCARD" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription=" "/>
+      <keyMapping columnObjectName="Join_1" columnName="HASCRCARD"/>
+    </attribute>
+    <attribute id="ISACTIVEMEMBER" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription=" "/>
+      <keyMapping columnObjectName="Join_1" columnName="ISACTIVEMEMBER"/>
+    </attribute>
+    <attribute id="EXITED" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription=" "/>
+      <keyMapping columnObjectName="Join_1" columnName="EXITED"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="CREDITSCORE" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription=" "/>
+      <measureMapping columnObjectName="Join_1" columnName="CREDITSCORE"/>
+    </measure>
+    <measure id="AGE" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription=" "/>
+      <measureMapping columnObjectName="Join_1" columnName="AGE"/>
+    </measure>
+    <measure id="TENURE" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription=" "/>
+      <measureMapping columnObjectName="Join_1" columnName="TENURE"/>
+    </measure>
+    <measure id="BALANCE" order="10" aggregationType="sum" measureType="simple" engineAggregation="avg">
+      <descriptions defaultDescription=" "/>
+      <measureMapping columnObjectName="Join_1" columnName="BALANCE"/>
+    </measure>
+  
+    <measure id="ESTIMATEDSALARY" order="14" aggregationType="sum" measureType="simple" engineAggregation="avg">
+      <descriptions defaultDescription=" "/>
+      <measureMapping columnObjectName="Join_1" columnName="ESTIMATEDSALARY"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="COUNT_MEMBER" order="16" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" aggregatable="true" datatype="BIGINT" length="">
+      <descriptions defaultDescription="COUNT_MEMBER"/>
+      <exceptionAggregation>
+        <attribute attributeName="CUSTOMERID"/>
+      </exceptionAggregation>
+      <formula>1</formula>
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-23" y="376"/>
+      <rectangleSize height="30" width="275"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

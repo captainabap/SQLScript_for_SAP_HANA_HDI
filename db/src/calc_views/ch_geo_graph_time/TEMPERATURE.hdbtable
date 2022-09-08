@@ -1,0 +1,7 @@
+column table temperature (
+	station varchar(25) not null,
+	timestamp timestamp  not null,
+	value decimal(5,2),
+	primary key (station,timestamp)
+
+)

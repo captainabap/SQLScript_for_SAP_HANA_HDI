@@ -1,0 +1,40 @@
+OBJECTID;NAME;ICAO_CODE;TYP;ARS;BUNDESLAND;REGBEZIRK;KREIS;VERWALTUNG;GEMEINDE;SHAPE_JSON
+1;Lahr;EDTL;Sonderflughafen;083175007065;Baden-Württemberg;Freiburg;Ortenaukreis;Lahr/Schwarzwald;Lahr/Schwarzwald;{"type": "Point", "coordinates": [7.824184335000041, 48.358112532000064]}
+2;Karlsruhe/Baden-Baden;EDSB;regional;082165006063;Baden-Württemberg;Karlsruhe;Rastatt;Rheinmünster-Lichtenau;Rheinmünster;{"type": "Point", "coordinates": [8.087642132000042, 48.77795996400005]}
+3;Stuttgart;EDDS;international;081160078078;Baden-Württemberg;Stuttgart;Esslingen;Leinfelden-Echterdingen;Leinfelden-Echterdingen;{"type": "Point", "coordinates": [9.193641705000061, 48.690570051000066]}
+4;Friedrichshafen;EDNY;regional;084350035035;Baden-Württemberg;Tübingen;Bodenseekreis;Meckenbeuren;Meckenbeuren;{"type": "Point", "coordinates": [9.524310669000045, 47.67308857900008]}
+5;Nürnberg;EDDN;international;095640000000;Bayern;Mittelfranken;Nürnberg;Nürnberg;Nürnberg;{"type": "Point", "coordinates": [11.079248865000068, 49.49413392100007]}
+6;München;EDDM;international;091775123133;Bayern;Oberbayern;Erding;Oberding;Oberding;{"type": "Point", "coordinates": [11.790460386000063, 48.35411572600003]}
+7;Ingolstadt/Manching;ETSI;Sonderflughafen;091865156116;Bayern;Oberbayern;Pfaffenhofen a.d. Ilm;Geisenfeld;Ernsgaden;{"type": "Point", "coordinates": [11.551602511000056, 48.72328602200008]}
+8;Oberpfaffenhofen;EDMO;Sonderflughafen;091880144144;Bayern;Oberbayern;Starnberg;Weßling;Weßling;{"type": "Point", "coordinates": [11.29338737300003, 48.08898304200005]}
+9;Memmingen;EDJA;regional;097785765171;Bayern;Schwaben;Unterallgäu;Memmingerberg;Memmingerberg;{"type": "Point", "coordinates": [10.232524845000057, 47.98937177900007]}
+10;Berlin-Brandenburg;EDDB;international;120610433433;Brandenburg;;Dahme-Spreewald;Schönefeld;Schönefeld;{"type": "Point", "coordinates": [13.508750421000059, 52.364200193000045]}
+11;Bremen;EDDW;international;040110000000;Bremen;;Bremen;Bremen;Bremen;{"type": "Point", "coordinates": [8.785539738000068, 53.05251154600006]}
+12;Hamburg;EDDH;international;020000000000;Hamburg;;Hamburg;Hamburg;Hamburg;{"type": "Point", "coordinates": [10.00608528500004, 53.633100289000026]}
+13;Frankfurt am Main;EDDF;international;064120000000;Hessen;Darmstadt;Frankfurt am Main;Frankfurt am Main;Frankfurt am Main;{"type": "Point", "coordinates": [8.571660942000051, 50.05075933400008]}
+14;Kassel-Calden;EDVK;regional;066330005005;Hessen;Kassel;Kassel;Calden;Calden;{"type": "Point", "coordinates": [9.386091014000044, 51.416276450000055]}
+15;Schwerin-Parchim;EDOP;regional;130760108108;Mecklenburg-Vorpommern;;Ludwigslust-Parchim;Parchim;Parchim;{"type": "Point", "coordinates": [11.781992806000062, 53.432197846000065]}
+16;Neubrandenburg;EDBN;regional;130715157145;Mecklenburg-Vorpommern;;Mecklenburgische Seenplatte;Neverin;Trollenhagen;{"type": "Point", "coordinates": [13.299372229000028, 53.60461231000005]}
+17;Laage;ETNL;regional;130725257062;Mecklenburg-Vorpommern;;Rostock;Laage;Laage;{"type": "Point", "coordinates": [12.286390252000047, 53.91398098800005]}
+18;Heringsdorf;EDAH;regional;130755562152;Mecklenburg-Vorpommern;;Vorpommern-Greifswald;Usedom-Süd;Zirchow;{"type": "Point", "coordinates": [14.138933674000043, 53.878508371000066]}
+19;Barth;EDBH;regional;130735352018;Mecklenburg-Vorpommern;;Vorpommern-Rügen;Barth;Divitz-Spoldershagen;{"type": "Point", "coordinates": [12.715415627000027, 54.33596246900004]}
+20;Braunschweig-Wolfsburg;EDVE;regional;031010000000;Niedersachsen;;Braunschweig;Braunschweig;Braunschweig;{"type": "Point", "coordinates": [10.559743334000075, 52.316328283000075]}
+21;Nordholz;ETMN;regional;033520061061;Niedersachsen;;Cuxhaven;Wurster Nordseeküste;Wurster Nordseeküste;{"type": "Point", "coordinates": [8.672904083000049, 53.76244777200003]}
+22;Hannover;EDDV;international;032410010010;Niedersachsen;;Region Hannover;Langenhagen;Langenhagen;{"type": "Point", "coordinates": [9.694597448000025, 52.45926900300003]}
+23;Siegerland;EDGS;regional;059700008008;Nordrhein-Westfalen;Arnsberg;Siegen-Wittgenstein;Burbach;Burbach;{"type": "Point", "coordinates": [8.076214262000065, 50.70723595700008]}
+24;Dortmund;EDLW;regional;059780016016;Nordrhein-Westfalen;Arnsberg;Unna;Holzwickede;Holzwickede;{"type": "Point", "coordinates": [7.61304417100007, 51.51506677500004]}
+25;Düsseldorf;EDDL;international;051110000000;Nordrhein-Westfalen;Düsseldorf;Düsseldorf;Düsseldorf;Düsseldorf;{"type": "Point", "coordinates": [6.76539028600007, 51.279022189000045]}
+26;Niederrhein;EDLV;regional;051540064064;Nordrhein-Westfalen;Düsseldorf;Kleve;Weeze;Weeze;{"type": "Point", "coordinates": [6.150405343000045, 51.59930298200004]}
+27;Essen/Mülheim;EDLE;regional;051170000000;Nordrhein-Westfalen;Düsseldorf;Mülheim an der Ruhr;Mülheim an der Ruhr;Mülheim an der Ruhr;{"type": "Point", "coordinates": [6.939219182000045, 51.40705092200005]}
+28;Paderborn/Lippstadt;EDLP;regional;057740016016;Nordrhein-Westfalen;Detmold;Paderborn;Büren;Büren;{"type": "Point", "coordinates": [8.619929917000036, 51.610637111000074]}
+29;Köln/Bonn;EDDK;international;053150000000;Nordrhein-Westfalen;Köln;Köln;Köln;Köln;{"type": "Point", "coordinates": [7.1224868420000575, 50.87831849100007]}
+30;Münster/Osnabrück;EDDG;international;055660012012;Nordrhein-Westfalen;Münster;Steinfurt;Greven;Greven;{"type": "Point", "coordinates": [7.694556151000029, 52.130831432000036]}
+31;Frankfurt-Hahn;EDFH;regional;071405004082;Rheinland-Pfalz;;Rhein-Hunsrück-Kreis;Kirchberg (Hunsrück);Lautzenhausen;{"type": "Point", "coordinates": [7.270744587000024, 49.94687415700008]}
+32;Zweibrücken;EDRZ;regional;073200000000;Rheinland-Pfalz;;Zweibrücken;Zweibrücken;Zweibrücken;{"type": "Point", "coordinates": [7.400132312000039, 49.21587038500007]}
+33;Saarbrücken;EDDR;international;100410100100;Saarland;;Regionalverband Saarbrücken;Saarbrücken;Saarbrücken;{"type": "Point", "coordinates": [7.112785998000049, 49.219938769000066]}
+34;Dresden;EDDC;international;146120000000;Sachsen;;Dresden;Dresden;Dresden;{"type": "Point", "coordinates": [13.76572505200005, 51.124754445000065]}
+35;Leipzig/Halle;EDDP;international;147300270270;Sachsen;;Nordsachsen;Schkeuditz;Schkeuditz;{"type": "Point", "coordinates": [12.22144651800005, 51.41979290200004]}
+36;Magdeburg/Cochstedt;EDBC;regional;150890175175;Sachsen-Anhalt;;Salzlandkreis;Hecklingen;Hecklingen;{"type": "Point", "coordinates": [11.423680456000056, 51.85993374000003]}
+37;Lübeck-Blankensee;EDHL;regional;010030000000;Schleswig-Holstein;;Lübeck;Lübeck;Lübeck;{"type": "Point", "coordinates": [10.701442030000067, 53.80523416800003]}
+38;Sylt;EDXW;regional;010540168168;Schleswig-Holstein;;Nordfriesland;Sylt;Sylt;{"type": "Point", "coordinates": [8.330282596000075, 54.913874572000054]}
+39;Erfurt-Weimar;EDDE;international;160510000000;Thüringen;;Erfurt;Erfurt;Erfurt;{"type": "Point", "coordinates": [10.961158097000066, 50.97507857900007]}

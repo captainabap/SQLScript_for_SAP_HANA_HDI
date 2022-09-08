@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_C_GRAPH_SHORT_PATH_MANY" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CV_C_GRAPH_FLIGHTS_01"/>
+<localVariables>
+  <variable id="IP_1" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="4" mandatory="false" defaultValue="EDDF">
+      <valueDomain type="AttributeValue">
+        <attribute name="ICAO_CODE"/>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:GraphView" id="Graph_1" workspace="flights" action="GET_SHORTEST_PATHS_ONE_TO_ALL">
+    <output name="vertices">
+      <viewAttributes>
+        <viewAttribute datatype="NVARCHAR" length="4" id="ICAO_CODE"/>
+        <viewAttribute datatype="INTEGER" length="10" id="WEIGHT"/>
+      </viewAttributes>
+    </output>
+    <output name="edges">
+      <viewAttributes>
+        <viewAttribute datatype="INTEGER" length="10" id="KEY"/>
+        <viewAttribute datatype="NVARCHAR" length="4" id="AIRPORT_START_ICAO"/>
+        <viewAttribute datatype="NVARCHAR" length="4" id="AIRPORT_END_ICAO"/>
+      </viewAttributes>
+    </output>
+    <getShortestPathsParameterization>
+      <startVertexParameter>IP_1</startVertexParameter>
+      <inputWeightColumn>FLIGHT_TIME</inputWeightColumn>
+    </getShortestPathsParameterization>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Graph_1" outputName="vertices">
+  <attributes>
+    <attribute id="ICAO_CODE" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ICAO_CODE"/>
+      <keyMapping columnObjectName="Graph_1" columnName="ICAO_CODE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="WEIGHT" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="WEIGHT"/>
+      <measureMapping columnObjectName="Graph_1" columnName="WEIGHT"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Graph_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-25" y="460"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
